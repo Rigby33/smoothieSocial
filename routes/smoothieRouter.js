@@ -17,6 +17,16 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+  recipe
+    .findById(req.params.id)
+    .then(recipe => res.json(recipe.serialize()))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'something went horribly awry' });
+    });
+});
+
 // create new recipe
 router.post('/', (req, res) => {
   const requiredFields = ['title', 'ingredients'];
@@ -40,7 +50,7 @@ router.post('/', (req, res) => {
 });
 
 // update recipe
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   if(!(req.params.id && req.body.id && req.params.id === req.body.id)) {
     res.status(400).json({
       error: 'Request path id and request body id value must match'
