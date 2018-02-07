@@ -48,8 +48,10 @@ function addNewRecipe() {
   $('#smoothieForm').on('submit', '#createSmoothie', (event) => {
     event.preventDefault();
     let serializedArray = $('[name=ingredients]').serializeArray();
+    console.log(serializedArray);
     let ingredientsArray = [];
-    let ingredients = serializedArray.map(value => ingredientsArray.push(value[1]));
+    let ingredients = serializedArray.map(value => value['value']);
+    console.log(ingredients);
     let recipeDetails = {
       title: $('[name=smoothieName]').val().trim(),
       ingredients: ingredients
@@ -142,6 +144,9 @@ function updateRecipe() {
   $('#smoothieForm').on('submit', '#editSmoothie', (event) => {
     event.preventDefault();
     let updatedTitle = $('[name=smoothieName]').val().trim();
+    let serializedArray = $('[name=ingredients]').serializeArray();
+    let updatedIngredients = serializedArray.map(value => value['value']);
+    console.log(updatedIngredients);
     // let serializedArray = $('[name=ingredients]').serializeArray();
     // let ingredientsArray = [];
     // for(let i = 0; i < serializedArray.length; i++) {
@@ -151,7 +156,7 @@ function updateRecipe() {
     // }
     let updatedInfo = {
       title: updatedTitle,
-      // ingredients: updatedIngredients,
+      ingredients: updatedIngredients,
       id: recipeId
     }
     $.ajax({
