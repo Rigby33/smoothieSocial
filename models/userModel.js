@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const userSchema = mongoose.Schema({
@@ -18,7 +18,11 @@ userSchema.methods.serialize = function() {
   };
 };
 
-userSchema.statics.hasPassword = function(password) {
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password)
+};
+
+userSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
 };
 
