@@ -147,13 +147,6 @@ function updateRecipe() {
     let serializedArray = $('[name=ingredients]').serializeArray();
     let updatedIngredients = serializedArray.map(value => value['value']);
     console.log(updatedIngredients);
-    // let serializedArray = $('[name=ingredients]').serializeArray();
-    // let ingredientsArray = [];
-    // for(let i = 0; i < serializedArray.length; i++) {
-    //   let updatedIngredients = ingredientsArray.push(serializedArray[i].value);
-    //   return updatedIngredients
-    //   console.log(updatedIngredients);
-    // }
     let updatedInfo = {
       title: updatedTitle,
       ingredients: updatedIngredients,
@@ -170,51 +163,11 @@ function updateRecipe() {
   });
 }
 
-// function updateRecipe() {
-//   $('#js-smoothies').on('click', '.update', (el) => {
-//     let recipeToUpdate = $(this).parent('.smoothie');
-//     recipeId = el.currentTarget.getAttribute('value');
-//     console.log(recipeId);
-//     $.ajax({
-//       url: `${SMOOTHIES_URL}/${recipeId}`,
-//       type: 'GET'
-//     }).done((recipe) => {
-//       displayRecipeToEdit(recipe);
-//     }).fail((err) => {
-//       console.log(err);
-//     });
-//   });
-// }
-//
-// function editRecipe() {
-//   $('#createSmoothie').on('submit', (event) => {
-//     event.preventDefault();
-//     let serializedArray = $('[name=ingredients]').serializeArray();
-//     let ingredientsArray = [];
-//     let ingredients = serializedArray.map(value => ingredientsArray.push(value[1]));
-//     let recipeDetails = {
-//       title: $('[name=smoothieName]').val().trim(),
-//       ingredients: ingredients
-//     };
-//     $.ajax({
-//       url: `${SMOOTHIES_URL}/${recipeId}`,
-//       type: 'PUT',
-//       contentType: 'application/json',
-//       data: JSON.stringify(recipeDetails),
-//     }).done(() => {
-//       displayCurrentRecipes();
-//     }).fail((err) => {
-//       console.log(err);
-//     });
-//   });
-// }
-//
+
 function displayRecipeToEdit(recipe) {
   $('[name=smoothieName]').val(`${recipe.title}`);
-  // $('[name=ingredients]').val(`${recipe.ingredients}`);
 }
-// $(editRecipe);
-// $(updateRecipe);
+
 $(updateRecipe);
 $(deleteRecipe);
 $(addNewRecipe);
