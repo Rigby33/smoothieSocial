@@ -3,28 +3,42 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 const jsonParser = bodyParser.json();
+const {JWT_SECRET} = require('../config');
+const jwt = require('jsonwebtoken');
 const {recipe} = require('../models/smoothieModel');
 
 mongoose.Promise = global.Promise;
 
 router.use(bodyParser.json());
 
-// get recipes if they have been created yet
-router.get('/', (req, res) => {
-  recipe.find()
-    .then(recipes => {
-      res.json(recipes.map(recipe => recipe.serialize()));
-    });
+router.use((req, res, next) => {
+	const token = req.headers.authorization || req.body.token;
+	if (!token) {
+		res.status(401).json({
+			message: "unauthorized"
+		});
+		return;
+	}
+	jwt.verify(token, JWT_SECRET, (error, decode) => {
+		if (error) {
+			res.status(500).json({
+				message: "Token is not valid"
+			});
+			return;
+		}
+		req.decoded = decode;
+		next();
+	});
 });
+// get recipes if they have been created yet
 
 router.get('/:id', (req, res) => {
-  recipe
-    .findById(req.params.id)
-    .then(recipe => res.json(recipe.serialize()))
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'something went horribly awry' });
-    });
+  recipe.find({userId: req.params.id})
+  .then(recipes => {
+    res.status(200).send(recipes);
+  }).catch(err => {
+    res.status(500).send(err);
+  });
 });
 
 // create new recipe
@@ -40,7 +54,8 @@ router.post('/', (req, res) => {
   }
   recipe.create({
     title: req.body.title,
-    ingredients: req.body.ingredients
+    ingredients: req.body.ingredients,
+    userId: req.body.userId
   })
   .then(recipe => res.status(201).json(recipe.serialize()))
   .catch(err => {
