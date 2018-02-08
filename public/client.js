@@ -53,10 +53,6 @@ function addNewRecipe() {
     console.log(serializedArray);
     let ingredientsArray = [];
     let ingredients = serializedArray.map(value => value['value']);
-<<<<<<< HEAD
-    console.log(ingredients);
-=======
->>>>>>> feature/user
     let recipeDetails = {
       title: $('[name=smoothieName]').val().trim(),
       ingredients: ingredients,
