@@ -57,9 +57,14 @@ function loadLoginForm() {
 
 function isUserLoggedIn() {
   if(localStorage.getItem('userId')) {
+    // hideRegisterLogin();
     displayCurrentRecipes();
-    return;
   }
+}
+
+function hideRegisterLogin() {
+  $('.register').hide();
+  $('.login').hide();
 }
 
 function logIn() {
@@ -94,7 +99,7 @@ function logIn() {
     });
   });
 }
-
+$(isUserLoggedIn);
 $(logIn);
 $(loadLoginForm);
 $(signUp);

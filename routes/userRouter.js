@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
+
 
 let token;
 // import user module
@@ -107,14 +109,6 @@ router.post('/register', (req, res) => {
   });
 });
 
-router.get('/user/:value', (req, res) => {
-  user.find({username: req.params.value})
-  .then(theuser => {
-    res.status(200).send(user);
-  }).catch(err => {
-    res.status(500).send(err);
-  });
-});
 
 router.post('/login', (req, res) => {
   user.findOne({

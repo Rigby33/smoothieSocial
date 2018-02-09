@@ -4,14 +4,32 @@
     <meta charset="utf-8">
     <title></title>
   </head>
+  <link href="https://fonts.googleapis.com/css?family=Copse|Montserrat:400,600,700" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
   <body>
-    <a href="recipes.html">view recipes</a>
-    <button class="create">Create Smoothie</button>
-    <button class="register">Register</button>
-    <button class="login">Login</button>
+    <header>
+      <div class="logoContainer">
+      <img src="img/logo.svg" alt="smoothieSocial"/>
+    </div>
+    <div class="userButtonContainer">
+      <button class="viewallsmoothies">View all smoothies</button>
+      <button class="create">Make a smoothie</button>
+      <button class="viewSmoothies">View my smoothies</button>
+      <button class="logout">Logout</button>
+    </div>
+    </header>
+    <div class="herosection">
+      <div class="buttoncolumn">
+        <h1>Register or login to create, save, and discover amazing smoothie recipes</h1>
+        <button class="register">Register</button>
+        <button class="login">Login</button>
+      </div>
+    </div>
     <div id="userform"></div>
     <div id="smoothieForm"></div>
+    <div class="smoothieWrapper">
     <div id="js-smoothies"></div>
+  </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="client.js"></script>
     <script src="auth.js"></script>

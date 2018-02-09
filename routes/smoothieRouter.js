@@ -32,6 +32,15 @@ router.use((req, res, next) => {
 });
 // get recipes if they have been created yet
 
+router.get('/', (req, res) => {
+	recipe.find()
+	.then(recipes => {
+		res.status(200).send(recipes);
+	}).catch(err => {
+		res.status(500).send(err);
+	});
+});
+
 router.get('/:id', (req, res) => {
   recipe.find({userId: req.params.id})
   .then(recipes => {
@@ -40,6 +49,14 @@ router.get('/:id', (req, res) => {
     res.status(500).send(err);
   });
 });
+
+router.get('/:recipeid', (req, res) => {
+  recipe.find({id: req.params.recipeid})
+  .then(recipe => {
+    console.log(recipe);
+    return res.status(200).send(recipe);
+  })
+})
 
 // create new recipe
 router.post('/', (req, res) => {

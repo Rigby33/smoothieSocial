@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0
+}
+
+:root {
+  --dark-pink: #EB1981;
+  --light-pink: #F8A1C6;
+  --bluish: #00CFC4;
+  --greenish: #23E97C;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  background-color: lightgrey;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1
+}
+
+.logoContainer > img {
+  width: 40%
+}
+
+.userButtonContainer {
+  display: inline-block;
+  margin-top: 20px
+}
+
+button {
+  padding: 10px 15px;
+  border-radius: 3px;
+  border: 0;
+  color: white;
+  text-transform: uppercase;
+  background: var(--dark-pink);
+  cursor: pointer
+}
+
+button:hover {
+  background-color: var(--light-pink)
+}
+
+.hidden {
+  display: none;
+}
+
+.herosection {
+  background: url('img/homebackground.jpg') top center/cover no-repeat;
+  padding: 150px 0
+}
+
+h1 {
+  color: white;
+  margin-bottom: 40px
+}
+
+.buttoncolumn {
+  width: 30%;
+  margin-left: 400px
+}
+
+.buttoncolumn > button {
+  font-size: 1.2em;
+}
+
+.smoothieWrapper {
+  padding: 100px 0
+}
+
+#js-smoothies {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.smoothie {
+  padding: 20px;
+  background: white;
+  width: 30%;
+  display: inline-block;
+  margin: 10px
+}
+
+.smoothie > ul {
+  list-style: none;
+  margin: 10px 0
+}
