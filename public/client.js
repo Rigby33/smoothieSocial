@@ -1,50 +1,3 @@
-// const createSmoothieTemplate = (
-//   `<form id="createSmoothie">
-//     <label for="smoothieName">Smoothie Name</label>
-//     <input name="smoothieName" type="text">
-//     <div class="ingredients">
-//       <label for="ingredients">Ingredients</label>
-//       <input type="text" name="ingredients">
-//       <input type="text" name="ingredients">
-//       <input type="text" name="ingredients">
-//     </div>
-//     <button class="addmore">Add more ingredients</button>
-//     <button type="submit">Blend</button>
-//   </form>`
-// );
-
-// const editSmoothieTemplate = (
-//   `<form id="editSmoothie">
-//     <label for="smoothieName">Smoothie Name</label>
-//     <input name="smoothieName" type="text">
-//     <div class="ingredients">
-//       <label for="ingredients">Ingredients</label>
-//       <input type="text" name="ingredients">
-//       <input type="text" name="ingredients">
-//       <input type="text" name="ingredients">
-//     </div>
-//     <button type="submit">Blend</button>
-//   </form>`
-// )
-
-// const smoothieTemplate = (
-//   `<div class="smoothie js-smoothie">
-//   <h3 class="js-recipe-title"></h3>
-//   <ul class="js-recipe-ingredients"></ul>
-//   <button class="delete">Delete</button>
-//   <button class="update">Update</button>
-//   <div class="editForm"></div>
-//   </div>`
-// );
-
-// const allSmoothiesTemplate = (
-//   `<div class="smoothie js-smoothie">
-//   <h3 class="js-recipe-title"></h3>
-//   <ul class="js-recipe-ingredients"></ul>
-//   <button class="add">Add to my smoothies</button>
-//   </div>`
-// );
-
 const serverBase = 'http://localhost:8080/';
 const SMOOTHIES_URL = serverBase + 'smoothies';
 let myStorage = window.localStorage;
@@ -81,13 +34,6 @@ function viewAllSmoothies() {
   });
 }
 
-// function addToCollection() {
-//   $('#js-smoothies').on('click', () => {
-//     let title = $(this).parent('.smoothie').html();
-//     console.log(title);
-//   });
-// }
-
 function viewMySmoothies() {
   $('body').on('click', '.viewSmoothies, .mySmoothies', () => {
     $('.activities').html('<div class="smoothies"></div>');
@@ -122,6 +68,7 @@ function viewMySmoothies() {
 }
 
 function addNewRecipe() {
+  let amountOfIngredients;
   $('body').on('click', '.create, .CreateRecipe', () => {
     $('#js-smoothies').empty();
     showRegularNav();
@@ -153,15 +100,34 @@ function addNewRecipe() {
     }).fail(err => console.log(err));
     $('.activities').html(createSmoothieTemplate);
   });
+  $('.activities').on('click', '.addmore', (event) => {
+    event.preventDefault();
+    amountOfIngredients = $('.ingredients > div').length;
+    console.log(amountOfIngredients + 1);
+    addMoreIngredientFields();
+    return amountOfIngredients;
+  })
   $('.activities').on('submit', '#createSmoothie', (event) => {
     event.preventDefault();
-    let serializedArray = $('[name=ingredients]').serializeArray();
-    console.log(serializedArray);
+    amountOfIngredients = $('.ingredients > div').length;
+    console.log(amountOfIngredients);
+    let ingredients;
     let ingredientsArray = [];
-    let ingredients = serializedArray.map(value => value['value']);
+    for (i = 0; i < amountOfIngredients; i++) {
+      if (amountOfIngredients > 0) {
+      console.log(i);
+      console.log('.ingredients' + i);
+      let serializedArray = $(`.ingredient${+ i} :input`).serializeArray();
+      console.log(serializedArray);
+      ingredients = serializedArray.map(value => value['value']);
+      console.log(ingredients);
+      ingredientsArray.push(ingredients);
+      }
+      console.log(ingredientsArray)
+    }
     let recipeDetails = {
       title: $('[name=smoothieName]').val().trim(),
-      ingredients: ingredients,
+      ingredients: ingredientsArray,
       userId: myStorage.userId
     };
     console.log(recipeDetails);
@@ -181,12 +147,19 @@ function addNewRecipe() {
     });
   });
 }
-
+ let classNumber = 0;
 function addMoreIngredientFields() {
-  $('.activities').on('click', '.addmore', (event) => {
-    event.preventDefault();
-    $('.ingredients').append('<input type="text" name="ingredients">');
-  });
+    classNumber ++;
+    $('.ingredients').append(`<div class="ingredient${classNumber + 1}">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>`);
 }
 
 function displayCurrentRecipes() {
@@ -237,7 +210,7 @@ function deleteRecipe() {
 
 function updateRecipe() {
   $('.activities').on('click', '.update', (el) => {
-    $('.activities').html(editSmoothieTemplate);
+    $('.activities').html(createSmoothieTemplate);
     let recipeToBeUpdated = $(this).parents('.smoothie');
     recipeId = el.currentTarget.getAttribute('value');
     console.log(recipeId);
@@ -286,11 +259,10 @@ function displayRecipeToEdit(recipe) {
   $('[name=smoothieName]').val(`${recipe.title}`);
   $('[name=ingredients]').val(`${recipe.ingredients}`);
 }
-// $(addToCollection);
+
 $(addMoreIngredientFields);
 $(viewAllSmoothies);
 $(viewMySmoothies);
 $(updateRecipe);
 $(deleteRecipe);
 $(addNewRecipe);
-// $(displayCurrentRecipes);

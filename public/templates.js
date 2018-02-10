@@ -1,5 +1,5 @@
 const loggedInActivities = (
-	`<div class="flexrow">
+  `<div class="flexrow">
       <div class="column">
         <h3>View all smoothies made by the community</h3>
         <p>Click the link below to get inspiration from other smoothie creators.</p>
@@ -36,7 +36,7 @@ const loginForm = (
   </form>`);
 
 const createSmoothieTemplate = (
-  `<div class="smoothieform">
+  `      <div class="smoothieform">
       <form id="createSmoothie">
         <div>
         <label for="smoothieName">Smoothie Name</label>
@@ -44,10 +44,40 @@ const createSmoothieTemplate = (
       </div>
       <div>
         <label for="ingredients">Ingredients</label>
+        <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
         <div class="ingredients">
-          <input type="text" name="ingredients">
-          <input type="text" name="ingredients">
-          <input type="text" name="ingredients">
+          <div class="ingredient0">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>
+          <div class="ingredient1">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>
+          <div class="ingredient2">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>
+        </div>
+        <div class="suggestions">
         </div>
       </div>
       <div class="formbuttons">

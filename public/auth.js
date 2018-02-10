@@ -61,7 +61,7 @@ function loadLoginForm() {
 }
 
 function loadUserActions() {
-  $('.activities').html(loggedInActivies);
+  $('.activities').html(loggedInActivities);
 }
 
 function isUserLoggedIn() {
