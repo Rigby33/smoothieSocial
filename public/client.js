@@ -54,6 +54,8 @@ let recipeId;
 
 function viewAllSmoothies() {
   $('body').on('click', '.communitySmoothies, .viewallsmoothies', () => {
+    showRegularNav();
+    $('.activities').html('<div class="smoothies"></div>');
     $.ajax({
       url: SMOOTHIES_URL,
       type: 'GET',
@@ -74,10 +76,7 @@ function viewAllSmoothies() {
       });
       console.log(recipeVals);
       console.log(recipeElement);
-      $('.activities').html(recipeElement);
-      $('.viewallsmoothies').show();
-      $('.create').show();
-      $('.viewSmoothies').show();
+      $('.smoothies').html(recipeElement);
       }).fail(err => console.log(err));
   });
 }
@@ -90,7 +89,9 @@ function viewAllSmoothies() {
 // }
 
 function viewMySmoothies() {
-  $('.viewSmoothies').on('click', () => {
+  $('body').on('click', '.viewSmoothies, .mySmoothies', () => {
+    $('.activities').html('<div class="smoothies"></div>');
+    showRegularNav();
     $.ajax({
       url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
       type: 'GET',
@@ -115,7 +116,7 @@ function viewMySmoothies() {
     });
     console.log(recipeVals);
     console.log(recipeElement);
-    $('.activities').html(recipeElement);
+    $('.smoothies').html(recipeElement);
     }).fail(err => console.log(err));
 });
 }
@@ -123,6 +124,7 @@ function viewMySmoothies() {
 function addNewRecipe() {
   $('body').on('click', '.create, .CreateRecipe', () => {
     $('#js-smoothies').empty();
+    showRegularNav();
     console.log('hi');
     $.ajax({
       url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
@@ -163,6 +165,7 @@ function addNewRecipe() {
       userId: myStorage.userId
     };
     console.log(recipeDetails);
+    console.log(JSON.stringify(recipeDetails));
     $.ajax({
       url: SMOOTHIES_URL,
       type: 'POST',
@@ -273,6 +276,11 @@ function updateRecipe() {
   });
 }
 
+function showRegularNav() {
+  $('.viewallsmoothies').show();
+  $('.create').show();
+  $('.viewSmoothies').show();
+}
 
 function displayRecipeToEdit(recipe) {
   $('[name=smoothieName]').val(`${recipe.title}`);

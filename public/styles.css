@@ -173,13 +173,27 @@ input[name="smoothieName"] {
   margin: 0 auto;
 }
 
+.smoothies {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  margin: 0 auto;
+}
+
 .smoothie {
   padding: 20px;
   background: white;
   width: 30%;
   display: inline-block;
-  margin: 10px
+  margin: 10px;
+  position: relative;
+  box-shadow: var(--boxshadow);
 }
+
+/*.deleteupdate {
+  position: absolute;
+  bottom: 0;
+}*/
 
 .smoothie > ul {
   list-style: none;
