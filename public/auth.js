@@ -1,29 +1,34 @@
 const REGISTER_URL = serverBase + 'auth/register';
 const LOGIN_URL = serverBase + 'auth/login';
 
-const registrationForm = (
-  `<form id="registerForm">
-  <label for="username">Username</label>
-  <input name="username" type="text">
-  <label for="password">Password</label>
-  <input name="password" type="password">
-  <button type="submit">Register</button>
-</form>`);
+// const registrationForm = (
+//   `<form id="registerForm">
+//   <label for="username">Username</label>
+//   <input name="username" type="text">
+//   <label for="password">Password</label>
+//   <input name="password" type="password">
+//   <button type="submit">Register</button>
+// </form>`);
 
-const loginForm = (
-  `<form id="loginForm">
-    <label for="username">Username</label>
-    <input name="username" type="text">
-    <label for="password">Password</label>
-    <input name="password" type="password">
-    <button type="submit">Register</button>
-  </form>`);
+// const loginForm = (
+//   `<form id="loginForm">
+//     <label for="username">Username</label>
+//     <input name="username" type="text">
+//     <label for="password">Password</label>
+//     <input name="password" type="password">
+//     <button type="submit">Register</button>
+//   </form>`);
+
+// const loggedInActivies = (
+//   `<button class="communitySmoothies">All Smoothies</button>
+//   <button class="CreateRecipe">Make a smoothie</button>
+//   <button class="mySmoothies">My Smoothies</button>`);
 
 function signUp() {
   $('.register').on('click', function() {
-    $('#userform').html(registrationForm);
+    $('.activities').html(registrationForm);
   });
-  $('#userform').on('submit', '#registerForm', function(event) {
+  $('.activities').on('submit', '#registerForm', function(event) {
     event.preventDefault();
     const username = $('[name=username]').val().trim();
     const password = $('[name=password]').val().trim();
@@ -42,7 +47,7 @@ function signUp() {
       data: JSON.stringify(newUser)
     }).done(() => {
       console.log('you have been registered');
-      $('#userform').html(loginForm);
+      $('.activities').html(loginForm);
     }).fail(err => {
       console.log(err);
     });
@@ -51,14 +56,26 @@ function signUp() {
 
 function loadLoginForm() {
   $('.login').on('click', function() {
-    $('#userform').html(loginForm);
+    $('.activities').html(loginForm);
   });
+}
+
+function loadUserActions() {
+  $('.activities').html(loggedInActivies);
 }
 
 function isUserLoggedIn() {
   if(localStorage.getItem('userId')) {
     // hideRegisterLogin();
-    displayCurrentRecipes();
+    // displayCurrentRecipes();
+    $('.activities').html(loggedInActivities);
+    $('header').show();
+    $('.herosection').hide();
+    $('.viewallsmoothies').hide();
+    $('.create').hide();
+    $('.viewSmoothies').hide();
+  } else {
+    $('header').hide();
   }
 }
 
@@ -68,7 +85,7 @@ function hideRegisterLogin() {
 }
 
 function logIn() {
-  $('#userform').on('submit', '#loginForm', function(event) {
+  $('.activities').on('submit', '#loginForm', function(event) {
     event.preventDefault();
     let userLogIn = {
       username: $('[name=username]').val(),
@@ -90,15 +107,28 @@ function logIn() {
       }
       localStorage.setItem('tokenKey', response.token);
       localStorage.setItem('userId', response.userId);
-      displayCurrentRecipes();
-      console.log(response.userId);
-      console.log(response.token);
+      loadUserActions();
+      $('header').show();
+      $('.herosection').hide();
       console.log('you have been logged in');
     }).fail(err => {
       console.log(err);
     });
   });
 }
+
+function logout() {
+  $('.logout').on('click', () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('token');
+    $('.activities').empty();
+    $('#js-smoothies').empty();
+    $('.herosection').show();
+    $('header').hide();
+  });
+}
+
+$(logout);
 $(isUserLoggedIn);
 $(logIn);
 $(loadLoginForm);

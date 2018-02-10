@@ -7,8 +7,7 @@ const mongoose = require('mongoose');
 const {DATABASE_URL, PORT} = require('./config');
 const smoothieRouter = require('./routes/smoothieRouter');
 const userRouter = require('./routes/userRouter');
-// const { router: userRouter, localStrategy, jwtStrategy } = require('./routes/userRouter');
-// const passport = require('passport');
+
 app.use(morgan('common'));
 
 
@@ -22,8 +21,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// passport.use(localStrategy);
-// passport.use(jwtStrategy);
 
 app.use(express.static('./public'));
 

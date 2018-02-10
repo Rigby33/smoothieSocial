@@ -7,7 +7,6 @@ const config = require('../config');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
-
 let token;
 // import user module
 const {user} = require('../models/userModel');
@@ -108,7 +107,6 @@ router.post('/register', (req, res) => {
     res.status(500).json({code: 500, message: 'Internal server error'});
   });
 });
-
 
 router.post('/login', (req, res) => {
   user.findOne({

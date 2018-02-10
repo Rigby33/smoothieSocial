@@ -11,25 +11,25 @@ mongoose.Promise = global.Promise;
 
 router.use(bodyParser.json());
 
-router.use((req, res, next) => {
-	const token = req.headers.authorization || req.body.token;
-	if (!token) {
-		res.status(401).json({
-			message: "unauthorized"
-		});
-		return;
-	}
-	jwt.verify(token, JWT_SECRET, (error, decode) => {
-		if (error) {
-			res.status(500).json({
-				message: "Token is not valid"
-			});
-			return;
-		}
-		req.decoded = decode;
-		next();
-	});
-});
+// router.use((req, res, next) => {
+// 	const token = req.headers.authorization || req.body.token;
+// 	if (!token) {
+// 		res.status(401).json({
+// 			message: "unauthorized"
+// 		});
+// 		return;
+// 	}
+// 	jwt.verify(token, JWT_SECRET, (error, decode) => {
+// 		if (error) {
+// 			res.status(500).json({
+// 				message: "Token is not valid"
+// 			});
+// 			return;
+// 		}
+// 		req.decoded = decode;
+// 		next();
+// 	});
+// });
 // get recipes if they have been created yet
 
 router.get('/', (req, res) => {

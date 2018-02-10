@@ -8,7 +8,10 @@
   --dark-pink: #EB1981;
   --light-pink: #F8A1C6;
   --bluish: #00CFC4;
-  --greenish: #23E97C;
+  --greenish: #97D151;
+  --light-grey: #EFEFEF;
+  --darker-grey: #7C7C7C;
+  --boxshadow: 0 3px 2px 0px rgba(89,89,89,0.15);
 }
 
 * {
@@ -20,7 +23,7 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  background-color: lightgrey;
+  background-color: var(--light-grey);
 }
 
 header {
@@ -28,9 +31,10 @@ header {
   justify-content: space-between;
   padding: 20px;
   background-color: white;
-  box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+  box-shadow: var(--boxshadow);
   position: relative;
-  z-index: 1
+  z-index: 1;
+  /* visibility: hidden; */
 }
 
 .logoContainer > img {
@@ -65,22 +69,101 @@ button:hover {
   padding: 150px 0
 }
 
+.herosection > img {
+
+}
+
 h1 {
   color: white;
-  margin-bottom: 40px
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 .buttoncolumn {
   width: 30%;
-  margin-left: 400px
+  margin-left: 400px;
 }
 
 .buttoncolumn > button {
   font-size: 1.2em;
+  margin: 0 auto
 }
 
 .smoothieWrapper {
   padding: 100px 0
+}
+
+.activities {
+  margin: 100px 0;
+}
+
+.flexrow {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: 0 auto
+}
+
+.column {
+  width: 30%;
+  padding: 20px;
+  position: relative;
+  background: white;
+  box-shadow: var(--boxshadow);
+}
+
+.column > h3 {
+  margin-bottom: 15px
+}
+
+.column > p {
+  margin-bottom: 90px
+}
+
+.column > button {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 40px;
+  font-size: 1em
+}
+
+.CreateRecipe {
+  background-color: var(--greenish);
+}
+
+.smoothieform {
+  width: 40%;
+  margin: 100px auto
+}
+
+#createSmoothie label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: var(--darker-grey);
+}
+
+#createSmoothie input {
+  border-radius: 20px;
+  border: 0;
+  padding: 15px;
+  font-size: 1em;
+  box-shadow: var(--boxshadow);
+  margin-bottom: 20px
+}
+
+input[name="smoothieName"] {
+  width:100%;
+}
+
+.ingredients > input {
+  margin-right: 10px
+}
+
+.formbuttons > button {
+  margin: 30px 5px 0 0;
+  font-size: 1em
 }
 
 #js-smoothies {

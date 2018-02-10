@@ -42,7 +42,6 @@ const jwtStrategy = new JwtStrategy(
   },
   (payload, done) => {
     done(null, payload.user);
-  }
-});
+  });
 
 module.exports = { localStrategy, jwtStrategy };
