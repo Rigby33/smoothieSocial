@@ -123,9 +123,10 @@ function viewMySmoothies() {
 
 function addNewRecipe() {
   $('body').on('click', '.create, .CreateRecipe', () => {
-    $('#js-smoothies').empty();
     showRegularNav();
     console.log('hi');
+    addMoreIngredientFields();
+    removeIngredientFields();
     $.ajax({
       url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
       type: 'GET',
@@ -133,9 +134,6 @@ function addNewRecipe() {
         authorization: myStorage.tokenKey
       }
   }).done(recipes => {
-    if(!(recipes > 0)) {
-      console.log('you need to create recipes first');
-    }
     let recipeVals = {
       recipes: recipes
     };
@@ -175,8 +173,10 @@ function addNewRecipe() {
         authorization: myStorage.tokenKey
       }
     }).done((recipe) => {
+    $('.activities').html('<div class="smoothies"></div>');
       displayCurrentRecipes();
     }).fail((err) => {
+      $('.error').html(err.message);
       console.log(err);
     });
   });
@@ -187,6 +187,13 @@ function addMoreIngredientFields() {
     event.preventDefault();
     $('.ingredients').append('<input type="text" name="ingredients">');
   });
+}
+
+function removeIngredientFields() {
+  $('.activities').on('click', '.removeFields', (event) => {
+    event.preventDefault();
+    $('[name=ingredients]').remove();
+  })
 }
 
 function displayCurrentRecipes() {
@@ -211,12 +218,14 @@ function displayCurrentRecipes() {
     });
     console.log(recipeVals);
     console.log(recipeElement);
-    $('.activities').html(recipeElement);
+    $('.smoothies').html(recipeElement);
   });
 }
 
 function deleteRecipe() {
   $('.activities').on('click', '.delete', (el) => {
+    let result = confirm('Are you sure you want to delete this recipe?');
+    if(result) {
     let recipeToRemove = $(this).parent('.smoothie');
     recipeId = el.currentTarget.getAttribute('value');
     console.log(recipeId);
@@ -232,12 +241,12 @@ function deleteRecipe() {
     }).fail((err) => {
       console.log(err);
     });
-  });
+  }
+});
 }
 
 function updateRecipe() {
   $('.activities').on('click', '.update', (el) => {
-    $('.activities').html(editSmoothieTemplate);
     let recipeToBeUpdated = $(this).parents('.smoothie');
     recipeId = el.currentTarget.getAttribute('value');
     console.log(recipeId);
@@ -247,9 +256,22 @@ function updateRecipe() {
       headers: {
         authorization: localStorage.getItem('tokenKey')
       }
-    }).done((recipe) => {
-      console.log(recipe);
-    })
+    }).done((recipes) => {
+      let recipeVals = {
+        recipes: recipes
+      };
+      let recipeElement = recipeVals.recipes.map((recipe) => {
+      let element = $(smoothieTemplate);
+      let ingredients = recipe.ingredients.map((ingredient) => `<li>${ingredient}</li>`);
+      element.find('.js-recipe-title').text(recipe.title);
+      element.find('.js-recipe-ingredients').html(ingredients);
+      element.find('.delete').attr('value', recipe._id);
+      element.find('.update').attr('value', recipe._id);
+      return element
+    });
+    console.log(recipeVals);
+    $('.activities').html(createSmoothieTemplate);
+  }).fail(err => console.log(err));
   });
   $('.activities').on('submit', '#editSmoothie', (event) => {
     event.preventDefault();
@@ -287,7 +309,8 @@ function displayRecipeToEdit(recipe) {
   $('[name=ingredients]').val(`${recipe.ingredients}`);
 }
 // $(addToCollection);
-$(addMoreIngredientFields);
+// $(addMoreIngredientFields);
+// $(removeIngredientFields);
 $(viewAllSmoothies);
 $(viewMySmoothies);
 $(updateRecipe);

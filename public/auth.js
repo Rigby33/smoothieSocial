@@ -1,34 +1,15 @@
 const REGISTER_URL = serverBase + 'auth/register';
 const LOGIN_URL = serverBase + 'auth/login';
 
-// const registrationForm = (
-//   `<form id="registerForm">
-//   <label for="username">Username</label>
-//   <input name="username" type="text">
-//   <label for="password">Password</label>
-//   <input name="password" type="password">
-//   <button type="submit">Register</button>
-// </form>`);
-
-// const loginForm = (
-//   `<form id="loginForm">
-//     <label for="username">Username</label>
-//     <input name="username" type="text">
-//     <label for="password">Password</label>
-//     <input name="password" type="password">
-//     <button type="submit">Register</button>
-//   </form>`);
-
-// const loggedInActivies = (
-//   `<button class="communitySmoothies">All Smoothies</button>
-//   <button class="CreateRecipe">Make a smoothie</button>
-//   <button class="mySmoothies">My Smoothies</button>`);
-
 function signUp() {
   $('.register').on('click', function() {
-    $('.activities').html(registrationForm);
+    $('.buttoncolumn > h1').hide();
+    $('.register').hide();
+    $('.login').show();
+    $('.userform').show();
+    $('.userform').html(registrationForm);
   });
-  $('.activities').on('submit', '#registerForm', function(event) {
+  $('.userform').on('submit', '#registerForm', function(event) {
     event.preventDefault();
     const username = $('[name=username]').val().trim();
     const password = $('[name=password]').val().trim();
@@ -47,28 +28,34 @@ function signUp() {
       data: JSON.stringify(newUser)
     }).done(() => {
       console.log('you have been registered');
-      $('.activities').html(loginForm);
+      $('.userform').html(loginForm);
     }).fail(err => {
-      console.log(err);
+      $('.warning').show();
+      $('.warning').text(err.responseJSON.message);
+      console.log(err.responseJSON.message);
     });
   });
 }
 
 function loadLoginForm() {
   $('.login').on('click', function() {
-    $('.activities').html(loginForm);
+    $('.userform').html(loginForm);
+    $('.buttoncolumn > h1').hide();
+    $('.login').hide()
+    $('.register').show();
+    $('.userform').show();
   });
 }
 
 function loadUserActions() {
-  $('.activities').html(loggedInActivies);
+  $('.activities').html(loggedInActivities);
 }
 
 function isUserLoggedIn() {
   if(localStorage.getItem('userId')) {
     // hideRegisterLogin();
     // displayCurrentRecipes();
-    $('.activities').html(loggedInActivities);
+    loadUserActions();
     $('header').show();
     $('.herosection').hide();
     $('.viewallsmoothies').hide();
@@ -85,7 +72,7 @@ function hideRegisterLogin() {
 }
 
 function logIn() {
-  $('.activities').on('submit', '#loginForm', function(event) {
+  $('.herosection').on('submit', '#loginForm', function(event) {
     event.preventDefault();
     let userLogIn = {
       username: $('[name=username]').val(),
@@ -97,16 +84,20 @@ function logIn() {
       contentType: 'application/json',
       data: JSON.stringify(userLogIn)
     }).done(response => {
+      localStorage.setItem('tokenKey', response.token);
+      localStorage.setItem('userId', response.userId);
       if(response == 'Username not found') {
+        $('.warning').show();
+        $('.warning').text('Username not found');
         console.log('Username not found');
         return;
       }
       if(response == 'Password is incorrect') {
+        $('.warning').show();
+        $('.warning').text('Password is incorrect');
         console.log('Password is incorrect');
         return;
       }
-      localStorage.setItem('tokenKey', response.token);
-      localStorage.setItem('userId', response.userId);
       loadUserActions();
       $('header').show();
       $('.herosection').hide();

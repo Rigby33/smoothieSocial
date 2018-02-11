@@ -4,7 +4,7 @@
   "description": "trying to figure things out",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --exit",
     "start": "node server.js"
   },
   "author": "",

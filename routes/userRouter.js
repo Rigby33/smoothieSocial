@@ -5,10 +5,9 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 const bcrypt = require('bcryptjs');
-const passport = require('passport');
 
 let token;
-// import user module
+
 const {user} = require('../models/userModel');
 
 const router = express.Router();
@@ -102,13 +101,14 @@ router.post('/register', (req, res) => {
   })
   .catch(err => {
     if (err.reason === 'ValidationError') {
-      return res.status(err.code).json(err);
+      return res.status(err.code).json(err.message);
     }
     res.status(500).json({code: 500, message: 'Internal server error'});
   });
 });
 
 router.post('/login', (req, res) => {
+  console.log('loggin in');
   user.findOne({
     username: req.body.username
   }).then(loggingInUser => {
@@ -116,86 +116,27 @@ router.post('/login', (req, res) => {
       res.send('Username not found').status(500);
       return;
     }
-    if(!bcrypt.compare(req.body.password, loggingInUser.password)) {
-      res.send('Password is incorrect').status(500);
-      return;
-    }
-    let userInfo = {
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName
-    }
-    token = jwt.sign(userInfo, config.JWT_SECRET, {expiresIn: config.JWT_EXPIRY, algorithm: 'HS256'});
-    res.status(200).json({
-      message: `${loggingInUser.username} successfully logged in`,
-      userId: loggingInUser._id,
-      token: token
-    });
+    bcrypt.compare(req.body.password, loggingInUser.password).then((match) => {
+      if(!match) {
+        res.send('Password is incorrect').status(500);
+        return;
+      }
+      let userInfo = {
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName
+      }
+      token = jwt.sign(userInfo, config.JWT_SECRET, {expiresIn: config.JWT_EXPIRY, algorithm: 'HS256'});
+      res.status(200).json({
+        message: `${loggingInUser.username} successfully logged in`,
+        userId: loggingInUser._id,
+        token: token
+      });
+    }); 
   }).catch(err => {
       console.log(err);
       res.status(500).send(err);
     });
   });
-
-// const createAuthToken = function(user) {
-// return jwt.sign({user}, config.JWT_SECRET, {
-//   subject: user.username,
-//   expiresIn: config.JWT_EXPIRY,
-//   algorithm: 'HS256'
-// });
-// };
-//
-// const localAuth = passport.authenticate('local', {session:false});
-//
-// router.post('/login', localAuth, (req, res) => {
-// const authToken = createAuthToken(req.user.serialize());
-// res.json({
-//   message: `${req.body.username} has successfully been logged in`,
-//   userId: user._id,
-//   token: authToken
-// });
-// });
-//
-// const jwtAuth = passport.authenticate('jwt', {session: false});
-//
-// const localStrategy = new LocalStrategy((username, password, callback) => {
-// let newUser;
-// user.findOne({ username: username })
-//   .then(_user => {
-//     newUser = _user;
-//     if(!user) {
-//       return Promise.reject({
-//         reason: 'LoginError',
-//         message: 'Incorrect username or password'
-//       });
-//     }
-//     return newUser.validatePassword(password);
-//   })
-//   .then(isValid=> {
-//     if(!isValid) {
-//       return Promise.reject({
-//         reason: 'LoginError',
-//         message: 'Incorrect username or password'
-//       });
-//     }
-//     return callback(null, newUser);
-//   })
-//   .catch(err => {
-//     if(err.reason === 'LoginError') {
-//       return callback(null, false, err);
-//     }
-//     return callback(err, false);
-//   });
-// });
-//
-// const jwtStrategy = new JwtStrategy(
-// {
-//   secretOrKey: config.JWT_SECRET,
-//   jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
-//   alorithm: ['HS256']
-// },
-// (payload, done) => {
-//   done(null, payload.user);
-// });
 
 module.exports = router;

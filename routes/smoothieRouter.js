@@ -11,25 +11,25 @@ mongoose.Promise = global.Promise;
 
 router.use(bodyParser.json());
 
-// router.use((req, res, next) => {
-// 	const token = req.headers.authorization || req.body.token;
-// 	if (!token) {
-// 		res.status(401).json({
-// 			message: "unauthorized"
-// 		});
-// 		return;
-// 	}
-// 	jwt.verify(token, JWT_SECRET, (error, decode) => {
-// 		if (error) {
-// 			res.status(500).json({
-// 				message: "Token is not valid"
-// 			});
-// 			return;
-// 		}
-// 		req.decoded = decode;
-// 		next();
-// 	});
-// });
+router.use((req, res, next) => {
+	const token = req.headers.authorization || req.body.token;
+	if (!token) {
+		res.status(401).json({
+			message: "unauthorized"
+		});
+		return;
+	}
+	jwt.verify(token, JWT_SECRET, (error, decode) => {
+		if (error) {
+			res.status(500).json({
+				message: "Token is not valid"
+			});
+			return;
+		}
+		req.decoded = decode;
+		next();
+	});
+});
 // get recipes if they have been created yet
 
 router.get('/', (req, res) => {
@@ -66,7 +66,12 @@ router.post('/', (req, res) => {
     if(!(field in req.body)) {
       const message = `Missing ${field} in request body`;
       console.error(message);
-      return res.status(400).send(message);
+      return res.status(400).json({
+        code: 400,
+        reason: 'MissingField',
+        message: message,
+        location: field
+      });
     }
   }
   recipe.create({
@@ -74,9 +79,11 @@ router.post('/', (req, res) => {
     ingredients: req.body.ingredients,
     userId: req.body.userId
   })
-  .then(recipe => res.status(201).json(recipe.serialize()))
+  .then(recipe => {return res.status(201).json(recipe.serialize())})
   .catch(err => {
-    console.error(err);
+    if (err.reason === 'MissingField') {
+      return res.status(err.code).json(err.message);
+    }
     res.status(500).json({ error: 'Something went wrong'});
   });
 });
