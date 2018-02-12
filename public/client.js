@@ -335,6 +335,7 @@ function deleteRecipe() {
 }
 
 function updateRecipe() {
+  let amountOfIngredients;
   $('.activities').on('click', '.update', (el) => {
     let recipeToBeUpdated = $(this).parents('.smoothie');
     recipeId = el.currentTarget.getAttribute('value');
@@ -359,29 +360,44 @@ function updateRecipe() {
       return element
     });
     console.log(recipeVals);
-    $('.activities').html(createSmoothieTemplate);
+    $('.activities').html(editSmoothieTemplate);
   }).fail(err => console.log(err));
   });
   $('.activities').on('submit', '#editSmoothie', (event) => {
     event.preventDefault();
-    let updatedTitle = $('[name=smoothieName]').val().trim();
-    let serializedArray = $('[name=ingredients]').serializeArray();
-    let updatedIngredients = serializedArray.map(value => value['value']);
-    console.log(updatedIngredients);
-    let updatedInfo = {
-      title: updatedTitle,
-      ingredients: updatedIngredients,
-      id: recipeId
+    amountOfIngredients = $('.ingredients > div').length;
+    console.log(amountOfIngredients);
+    let ingredients;
+    let ingredientsArray = [];
+    for (i = 0; i < amountOfIngredients; i++) {
+      if (amountOfIngredients > 0) {
+      console.log(i);
+      console.log('.ingredients' + i);
+      let serializedArray = $(`.ingredient${+ i} :input`).serializeArray();
+      console.log(serializedArray);
+      ingredients = serializedArray.map(value => value['value']);
+      console.log(ingredients);
+      ingredientsArray.push(ingredients);
+      }
+      console.log(ingredientsArray)
     }
+    let updateInfo = {
+      title: $('[name=smoothieName]').val().trim(),
+      ingredients: ingredientsArray,
+      id: recipeId
+    };
+    console.log(updateInfo);
+    console.log(JSON.stringify(updateInfo));
     $.ajax({
       url: `${SMOOTHIES_URL}/${recipeId}`,
       method: 'PUT',
       contentType: 'application/json',
-      data: JSON.stringify(updatedInfo),
+      data: JSON.stringify(updateInfo),
       headers: {
         authorization: localStorage.getItem('tokenKey')
       }
     }).done(() => {
+      $('.activities').html('<div class="smoothies"></div>');
       displayCurrentRecipes();
     });
   });
