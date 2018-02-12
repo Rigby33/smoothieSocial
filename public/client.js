@@ -121,12 +121,28 @@ function viewMySmoothies() {
 });
 }
 
+ let classNumber = 0;
+function addMoreIngredientFields() {
+    classNumber ++;
+    $('.ingredients').append(`<div class="ingredient${classNumber + 1}">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>`);
+}
+
 function addNewRecipe() {
+  let amountOfIngredients;
   $('body').on('click', '.create, .CreateRecipe', () => {
     showRegularNav();
     console.log('hi');
-    addMoreIngredientFields();
-    removeIngredientFields();
+    // addMoreIngredientFields();
+    // removeIngredientFields();
     $.ajax({
       url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
       type: 'GET',
@@ -153,13 +169,25 @@ function addNewRecipe() {
   });
   $('.activities').on('submit', '#createSmoothie', (event) => {
     event.preventDefault();
-    let serializedArray = $('[name=ingredients]').serializeArray();
-    console.log(serializedArray);
+    amountOfIngredients = $('.ingredients > div').length;
+    console.log(amountOfIngredients);
+    let ingredients;
     let ingredientsArray = [];
-    let ingredients = serializedArray.map(value => value['value']);
+    for (i = 0; i < amountOfIngredients; i++) {
+      if (amountOfIngredients > 0) {
+      console.log(i);
+      console.log('.ingredients' + i);
+      let serializedArray = $(`.ingredient${+ i} :input`).serializeArray();
+      console.log(serializedArray);
+      ingredients = serializedArray.map(value => value['value']);
+      console.log(ingredients);
+      ingredientsArray.push(ingredients);
+      }
+      console.log(ingredientsArray)
+    }
     let recipeDetails = {
       title: $('[name=smoothieName]').val().trim(),
-      ingredients: ingredients,
+      ingredients: ingredientsArray,
       userId: myStorage.userId
     };
     console.log(recipeDetails);
@@ -181,6 +209,67 @@ function addNewRecipe() {
     });
   });
 }
+
+// function addNewRecipe() {
+//   $('body').on('click', '.create, .CreateRecipe', () => {
+//     showRegularNav();
+//     console.log('hi');
+//     addMoreIngredientFields();
+//     removeIngredientFields();
+//     $.ajax({
+//       url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
+//       type: 'GET',
+//       headers: {
+//         authorization: myStorage.tokenKey
+//       }
+//   }).done(recipes => {
+//     let recipeVals = {
+//       recipes: recipes
+//     };
+//     let recipeElement = recipeVals.recipes.map((recipe) => {
+//       let element = $(smoothieTemplate);
+//       let ingredients = recipe.ingredients.map((ingredient) => `<li>${ingredient}</li>`);
+//       element.find('.js-recipe-title').text(recipe.title);
+//       element.find('.js-recipe-ingredients').html(ingredients);
+//       element.find('.delete').attr('value', recipe._id);
+//       element.find('.update').attr('value', recipe._id);
+//       return element
+//     });
+//     console.log(recipeVals);
+//     console.log(recipeElement);
+//     }).fail(err => console.log(err));
+//     $('.activities').html(createSmoothieTemplate);
+//   });
+//   $('.activities').on('submit', '#createSmoothie', (event) => {
+//     event.preventDefault();
+//     let serializedArray = $('[name=ingredients]').serializeArray();
+//     console.log(serializedArray);
+//     let ingredientsArray = [];
+//     let ingredients = serializedArray.map(value => value['value']);
+//     let recipeDetails = {
+//       title: $('[name=smoothieName]').val().trim(),
+//       ingredients: ingredients,
+//       userId: myStorage.userId
+//     };
+//     console.log(recipeDetails);
+//     console.log(JSON.stringify(recipeDetails));
+//     $.ajax({
+//       url: SMOOTHIES_URL,
+//       type: 'POST',
+//       contentType: 'application/json',
+//       data: JSON.stringify(recipeDetails),
+//       headers: {
+//         authorization: myStorage.tokenKey
+//       }
+//     }).done((recipe) => {
+//     $('.activities').html('<div class="smoothies"></div>');
+//       displayCurrentRecipes();
+//     }).fail((err) => {
+//       $('.error').html(err.message);
+//       console.log(err);
+//     });
+//   });
+// }
 
 function addMoreIngredientFields() {
   $('.activities').on('click', '.addmore', (event) => {

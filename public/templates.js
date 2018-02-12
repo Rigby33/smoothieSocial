@@ -44,8 +44,7 @@ const loginForm = (
   </form>`);
 
 const createSmoothieTemplate = (
-  `<div class="smoothieform">
-  <div class="warning"></div>
+  `      <div class="smoothieform">
       <form id="createSmoothie">
         <div>
         <label for="smoothieName">Smoothie Name</label>
@@ -53,10 +52,40 @@ const createSmoothieTemplate = (
       </div>
       <div>
         <label for="ingredients">Ingredients</label>
+        <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
         <div class="ingredients">
-          <input type="text" name="ingredients">
-          <input type="text" name="ingredients">
-          <input type="text" name="ingredients">
+          <div class="ingredient0">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>
+          <div class="ingredient1">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>
+          <div class="ingredient2">
+            <input type="number" name="quantity">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+              <input type="text" name="ingredient">
+          </div>
+        </div>
+        <div class="suggestions">
         </div>
       </div>
       <div class="formbuttons">
@@ -66,6 +95,30 @@ const createSmoothieTemplate = (
       </form>
     </div>`
 );
+
+// const createSmoothieTemplate = (
+//   `<div class="smoothieform">
+//   <div class="warning"></div>
+//       <form id="createSmoothie">
+//         <div>
+//         <label for="smoothieName">Smoothie Name</label>
+//         <input name="smoothieName" type="text">
+//       </div>
+//       <div>
+//         <label for="ingredients">Ingredients</label>
+//         <div class="ingredients">
+//           <input type="text" name="ingredients">
+//           <input type="text" name="ingredients">
+//           <input type="text" name="ingredients">
+//         </div>
+//       </div>
+//       <div class="formbuttons">
+//         <button class="addmore">Add more ingredients</button>
+//         <button type="submit">Blend</button>
+//       </div>
+//       </form>
+//     </div>`
+// );
 
 const editSmoothieTemplate = (
   `<form id="editSmoothie">
