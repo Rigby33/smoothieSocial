@@ -2,14 +2,12 @@ const REGISTER_URL = serverBase + 'auth/register';
 const LOGIN_URL = serverBase + 'auth/login';
 
 function signUp() {
-  $('.register').on('click', function() {
-    $('.buttoncolumn > h1').hide();
-    $('.register').hide();
-    $('.login').show();
-    $('.userform').show();
-    $('.userform').html(registrationForm);
+  $('body').on('click', '.register, .registerQuestion', function() {
+    $('.userFormWrapper').show();
+    $('.userFormWrapper').html(registrationForm);
+    closeButton();
   });
-  $('.userform').on('submit', '#registerForm', function(event) {
+  $('.userFormWrapper').on('submit', '.registrationForm', function(event) {
     event.preventDefault();
     const username = $('[name=username]').val().trim();
     const password = $('[name=password]').val().trim();
@@ -28,7 +26,7 @@ function signUp() {
       data: JSON.stringify(newUser)
     }).done(() => {
       console.log('you have been registered');
-      $('.userform').html(loginForm);
+      $('.userFormWrapper').html(loginForm);
     }).fail(err => {
       $('.warning').show();
       $('.warning').text(err.responseJSON.message);
@@ -37,42 +35,20 @@ function signUp() {
   });
 }
 
-function loadLoginForm() {
-  $('.login').on('click', function() {
-    $('.userform').html(loginForm);
-    $('.buttoncolumn > h1').hide();
-    $('.login').hide()
-    $('.register').show();
-    $('.userform').show();
+function closeButton() {
+  $('.userFormWrapper').on('click', '.closebutton > div', event => {
+    $('.userFormWrapper').hide();
+    console.log('hi');
   });
 }
 
-function loadUserActions() {
-  $('.activities').html(loggedInActivities);
-}
-
-function isUserLoggedIn() {
-  if(localStorage.getItem('userId')) {
-    // hideRegisterLogin();
-    // displayCurrentRecipes();
-    loadUserActions();
-    $('header').show();
-    $('.herosection').hide();
-    $('.viewallsmoothies').hide();
-    $('.create').hide();
-    $('.viewSmoothies').hide();
-  } else {
-    $('header').hide();
-  }
-}
-
-function hideRegisterLogin() {
-  $('.register').hide();
-  $('.login').hide();
-}
-
 function logIn() {
-  $('.herosection').on('submit', '#loginForm', function(event) {
+  $('body').on('click', '.login, .loginQuestion', event => {
+    $('.userFormWrapper').show();
+    $('.userFormWrapper').html(loginForm);
+    closeButton();
+  });
+  $('body').on('submit', '.loginForm', function(event) {
     event.preventDefault();
     let userLogIn = {
       username: $('[name=username]').val(),
@@ -98,6 +74,7 @@ function logIn() {
         console.log('Password is incorrect');
         return;
       }
+      $('.userFormWrapper').hide();
       loadUserActions();
       $('header').show();
       $('.herosection').hide();
@@ -105,15 +82,86 @@ function logIn() {
     }).fail(err => {
       console.log(err);
     });
-  });
+  });  
 }
+
+// function loadLoginForm() {
+//   $('.login').on('click', function() {
+//     $('.userform').html(loginForm);
+//     $('.buttoncolumn > h1').hide();
+//     $('.login').hide()
+//     $('.register').show();
+//     $('.userform').show();
+//   });
+// }
+
+function loadUserActions() {
+  $('main').hide();
+  $('.activities').show();
+  $('.activities').html(loggedInActivities);
+}
+
+function isUserLoggedIn() {
+  if(localStorage.getItem('userId')) {
+    // hideRegisterLogin();
+    // displayCurrentRecipes();
+    loadUserActions();
+    $('header').show();
+    $('.herosection').hide();
+  } else {
+    $('header').hide();
+  }
+}
+
+// function hideRegisterLogin() {
+//   $('.register').hide();
+//   $('.login').hide();
+// }
+
+// function logIn() {
+//   $('.herosection').on('submit', '#loginForm', function(event) {
+//     event.preventDefault();
+//     let userLogIn = {
+//       username: $('[name=username]').val(),
+//       password: $('[name=password]').val()
+//     }
+//     $.ajax({
+//       url: LOGIN_URL,
+//       type: 'POST',
+//       contentType: 'application/json',
+//       data: JSON.stringify(userLogIn)
+//     }).done(response => {
+//       localStorage.setItem('tokenKey', response.token);
+//       localStorage.setItem('userId', response.userId);
+//       if(response == 'Username not found') {
+//         $('.warning').show();
+//         $('.warning').text('Username not found');
+//         console.log('Username not found');
+//         return;
+//       }
+//       if(response == 'Password is incorrect') {
+//         $('.warning').show();
+//         $('.warning').text('Password is incorrect');
+//         console.log('Password is incorrect');
+//         return;
+//       }
+//       loadUserActions();
+//       $('header').show();
+//       $('.herosection').hide();
+//       console.log('you have been logged in');
+//     }).fail(err => {
+//       console.log(err);
+//     });
+//   });
+// }
 
 function logout() {
   $('.logout').on('click', () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('token');
-    $('.activities').empty();
-    $('#js-smoothies').empty();
+    $('.activities').hide();
+    $('main').show();
+    // $('#js-smoothies').empty();
     $('.herosection').show();
     $('header').hide();
   });
@@ -122,5 +170,5 @@ function logout() {
 $(logout);
 $(isUserLoggedIn);
 $(logIn);
-$(loadLoginForm);
+// $(loadLoginForm);
 $(signUp);

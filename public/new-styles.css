@@ -1,0 +1,417 @@
+:root {
+  --golden-yellow: #FBC937;
+  --dark-golden-yellow: #B08D27;
+  --dark-pink: #B3748F;
+  --light-pink: #F8A1C6;
+  --darker-green: #97D151;
+  --lighter-green: #C3E39F;
+  --light-grey: #EEEEEE;
+  --darker-grey: #666666;
+  --medium-grey: #A3A3A3;
+  --boxshadow: 0 3px 10px 0px rgba(89,89,89,0.30);
+  --boxshadow-two: 0 3px 10px 0px rgba(89,89,89,0.20);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+header {
+  background-color: var(--darker-green);
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+header > img {
+  width: 20%
+}
+
+nav {
+  display: inline-block;
+  width: 100%;
+  text-align: right
+}
+
+nav > ul {
+  list-style: none;
+  display: inline-block;
+  margin-right: 10px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 300
+}
+
+nav > ul li {
+  display: inline-block;
+}
+
+nav > ul li a {
+  padding: 10px 10px 15px 10px;
+  cursor: pointer;
+}
+
+nav > ul li a:hover {
+  border-bottom: 2px solid var(--golden-yellow);
+}
+
+.logout {
+  background-color: var(--light-pink);
+  border: var(--dark-pink) solid 1px;
+  color: var(--dark-pink);
+}
+
+.logout:hover {
+  background-color: var(--dark-pink);
+  border: var(--dark-pink) solid 1px;
+  color: white;
+}
+
+button {
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.herosection {
+  background: url('img/greensmoothie.png') right center/50% no-repeat, linear-gradient(var(--darker-green), var(--lighter-green));
+  box-shadow: var(--boxshadow);
+  border-bottom: 2px solid var(--darker-green);
+}
+
+.herosection > .column {
+  width: 45%;
+  padding:175px 0 150px 150px;
+}
+
+.herosection > .column > img {
+  width: 70%
+}
+
+h1 {
+  font-size: 1.5em;
+  color: white;
+  font-weight: 400;
+  margin-bottom: 20px
+}
+
+button {
+  font-size: 1.2em;
+  padding: 10px 20px;
+}
+
+.register {
+  background-color: var(--golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: var(--dark-golden-yellow);
+  margin-right: 10px
+}
+
+.register:hover {
+  background-color: var(--dark-golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: white;  
+}
+
+.login {
+  background-color: var(--light-pink);
+  border: var(--dark-pink) solid 1px;
+  color: var(--dark-pink);
+}
+
+.login:hover {
+  background-color: var(--dark-pink);
+  border: var(--dark-pink) solid 1px;
+  color: white;
+}
+
+.mainWrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  padding: 60px 0 100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.mainWrapper > .column {
+  width: 25%;
+  margin:0 40px;
+}
+
+.mainWrapper > .column > img {
+  width: 40%;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  color: var(--darker-green);
+  font-size: 1.3em;
+  margin-bottom: 15px
+}
+
+.mainWrapper > .column > p {
+  text-align: center;
+  color: var(--darker-grey);
+  font-weight: 300
+}
+
+.activities {
+  background: linear-gradient(var(--darker-green), var(--lighter-green));
+}
+
+.activitiesWrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  padding: 100px 0 150px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.activitiesWrapper > .column {
+  width: 25%;
+  margin:0 40px;
+  text-align: center
+}
+
+.activitiesWrapper > .column > img {
+  width: 40%;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.activitiesWrapper > .column > h2 {
+  color: var(--dark-pink);
+}
+
+.activitiesWrapper > .column > p {
+  text-align: center;
+  color: var(--darker-grey);
+  font-weight: 300
+}
+
+.activitiesWrapper > .column > button {
+  background-color: var(--golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: var(--dark-golden-yellow);
+  margin-top: 20px;
+}
+
+.activitiesWrapper > .column > button:hover {
+  background-color: var(--dark-golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: white;  
+}
+
+input {
+  font-size: 1em
+}
+
+.userFormWrapper {
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    display: none;
+}
+
+.closebutton {
+  text-align: right;
+  color: var(--darker-green);
+}
+
+.closebutton > div {
+  display: inline-block;
+}
+
+.userForm {
+  background-color: var(--light-grey);
+  padding: 30px;
+  border-radius: 10px;
+  width: 40%;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.userForm > h3 {
+  text-align: center;
+  font-weight: 400;
+  color: var(--darker-grey);
+  margin-bottom: 10px
+}
+
+.userquestion {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  align-items: center
+}
+
+.userquestion > p {
+  color: var(--darker-grey);
+  margin-right: 10px;
+  font-weight: 300
+}
+
+.userquestion > button {
+  font-size: 1em;
+  padding: 5px 10px;
+  background-color: var(--light-pink);
+  border: var(--dark-pink) solid 1px;
+  color: var(--dark-pink);
+}
+
+.userquestion > button:hover {
+  background-color: var(--dark-pink);
+  border: var(--dark-pink) solid 1px;
+  color: white;
+}
+
+.userlogin > .userquestion > button {
+  font-size: 1em;
+  padding: 5px 10px;
+  background-color: var(--golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: var(--dark-golden-yellow);
+}
+
+.userlogin > .userquestion > button:hover {
+  background-color: var(--dark-golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: white;
+}
+
+.warning {
+  background-color: var(--light-pink);
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: var(--boxshadow-two);
+}
+
+.registrationForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstlastnames {
+  display: flex;
+  width: 100%
+}
+
+.firstlastnames > input {
+  width: 100%
+}
+
+.firstlastnames > input:nth-child(1) {
+  margin-right: 5px
+}
+
+.firstlastnames > input:nth-child(2) {
+  margin-left: 5px
+}
+
+input {
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: var(--boxshadow-two);
+  border: 0;
+  margin-bottom: 20px
+}
+
+.submitbutton {
+  text-align: center
+}
+
+.registrationForm > div > button {
+  background-color: var(--golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: var(--dark-golden-yellow);
+  margin-top: 20px;
+}
+
+.registrationForm > div > button:hover {
+  background-color: var(--dark-golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: white;  
+}
+
+.loginForm > div > button {
+  background-color: var(--light-pink);
+  border: var(--dark-pink) solid 1px;
+  color: var(--dark-pink);
+  margin-top: 20px;
+}
+
+.loginForm > div > button:hover {
+  background-color: var(--dark-pink);
+  border: var(--dark-pink) solid 1px;
+  color: white;  
+}
+
+@media only screen and (max-width: 1199px) {
+  .herosection > .column {
+    width: 50%;
+    padding:100px 0 100px 50px;
+  }
+  main {
+    width: 100%
+  }
+  main > .column {
+    width: 20%
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .herosection {
+    background: linear-gradient(var(--darker-green), var(--lighter-green));
+  }
+  .herosection > .column {
+    width: 100%;
+    padding:40px;
+  }
+  .herosection > .column > img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 90%
+  }
+  h1 {
+    text-align: center
+  }
+  .herobuttons {
+    margin: 0 auto;
+    text-align: center;
+  }
+  main {
+    padding-bottom: 60px;
+  }
+  main > .column {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+

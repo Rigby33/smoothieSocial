@@ -4,31 +4,53 @@
       <meta charset="utf-8">
       <title></title>
    </head>
-   <link href="https://fonts.googleapis.com/css?family=Copse|Montserrat:400,600,700" rel="stylesheet">
-   <link href="styles.css" rel="stylesheet">
+   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
+<!--    <link href="styles.css" rel="stylesheet"> -->
+   <link href="new-styles.css" rel="stylesheet">
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
    <body>
       <header>
-         <div class="logoContainer">
-            <img src="img/logo.svg" alt="smoothieSocial"/>
-         </div>
-         <div class="userButtonContainer">
-            <button class="viewallsmoothies">View all smoothies</button>
-            <button class="create">Make a smoothie</button>
-            <button class="viewSmoothies">View my smoothies</button>
-            <button class="logout">Logout</button>
-         </div>
+         <img src="img/logo.svg" alt="smoothie social"/>
+         <nav>
+            <ul>
+               <li><a class="nav-create">create</a></li>
+               <li><a class="nav-community">community</a></li>
+               <li><a class="nav-my-smoothies">my smoothies</a></li>
+            </ul>
+            <button class="logout">logout</button>
+         </nav>
       </header>
       <div class="herosection">
-         <div class="buttoncolumn">
+         <div class="column">
             <img src="img/logo.svg" alt="smoothieSocial"/>
             <h1>Register or login to create, save, and discover amazing smoothie recipes</h1>
-            <div class="registerlogin">
-               <button class="register">Register</button>
-               <button class="login">Login</button>
-            </div>
-            <div class="userform">
+            <div class="herobuttons">
+               <button class="register">register</button>
+               <button class="login">login</button>
             </div>
          </div>
+      </div>
+      <main>
+         <div class="mainWrapper">
+         <div class="column">
+      <img src="img/blender-icon.png" alt="blender icon"/>
+      <h2>Create</h2>
+      <p>Create smoothie recipes with the easy to use form. You just need a name for your smoothie and the ingredients and you’re on your way!</p>
+   </div>
+   <div class="column">
+      <img src="img/community-icon.png" alt="community icon"/>
+      <h2>Community</h2>
+      <p>Users can view smoothies created by other smoothie social members. You might just get some inspiration for your next creation!</p>
+   </div>
+   <div class="column">
+      <img src="img/save-icon.png" alt="save icon"/>
+      <h2>Save</h2>
+      <p>After you create your new recipe it is automatically saved for you. You can view your creations at any time, edit them, or delete them.</p>
+   </div>
+</div>
+      </main>
+      <div class="userFormWrapper">
       </div>
       <div class="activities">
       </div>

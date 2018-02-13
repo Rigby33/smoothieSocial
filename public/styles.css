@@ -5,8 +5,12 @@
 }
 
 :root {
-  --dark-pink: #EB1981;
+  --golden-yellow: #FBC937;
+  --dark-golden-yellow: #B08D27;
+  --dark-pink: #B3748F;
   --light-pink: #F8A1C6;
+  --darker-green: #97D151;
+  --lighter-green: #C3E39F;
   --bluish: #00CFC4;
   --greenish: #97D151;
   --light-grey: #EFEFEF;
