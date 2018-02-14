@@ -705,11 +705,12 @@ textarea {
     width: 100%;
     margin-bottom: 40px;
   }
-  .activities {
+/*  .activities {
     padding-bottom: 20px
-  }
+  }*/
   .activitiesWrapper {
-    padding-top: 40px
+    padding-top: 40px;
+    padding-bottom: 20px;
   }
   .smoothie {
     width: 100%;
@@ -725,6 +726,8 @@ textarea {
     margin-left: 0;
     margin-right:0;
   }
-
+  .userFormWrapper {
+    position: absolute;
+  }
 }
 

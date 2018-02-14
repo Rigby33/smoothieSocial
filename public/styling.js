@@ -36,5 +36,17 @@ function activeNav() {
 	});
 }
 
+function mobileUserRegisterLogin() {
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+		$('body').on('click', '.register, .login, .loginQuestion, .registerQuestion', (event) => {
+			$('.wrapper').css('display', 'none');
+		});
+		$('body').on('click', '.closebutton > div', event => {
+			$('.wrapper').show();
+		});
+	}
+}
+
+$(mobileUserRegisterLogin);
 $(activeNav);
 $(homeLoadFadeIn);
