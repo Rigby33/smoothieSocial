@@ -1,5 +1,5 @@
 
-const serverBase = 'http://localhost:8080/';
+const serverBase = window.location.href.split('#')[0];
 const SMOOTHIES_URL = serverBase + 'smoothies';
 let myStorage = window.localStorage;
 
