@@ -1,4 +1,10 @@
 language: node_js
 node_js: node
-services: 
-  mongodb
+services: mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: QvXaGa7IE8LLipdzDVS+cNFyfxMAaSGwhQTcN0gC93L0TVC5FaoDGsCcFjJ3JWK6/lwgENdbg0BSF2ajIl7RmQpZdAakJhQ7aJ92qUerxGRdRcH43JoY9Q3CDAQWB+6UiYsI/Dj21ODN+ZdQ69ocBZszIXOFnFfEOpjhxsmTrr2Bl6JTChPHdE0w4AOdpiGfUrkmgaOk108GzWh9jFW0p6zVHIgtkxsdOlh76YEKyfl1DvVOBxV8pQ1+74uccADejPM2gqx4Ecqf5PceA2rF/iAlerkf4QRcUBryhcFmHrI0Ktz6X0nvZJT/P6Jc2up1LETNOLza3gl/4ozrQ6bPpMKzoDR+4Ddq5iPqlPu6WQnugmUCJnQn6ujTBHixTEm2g7H5BeQ4Q+AlTRi4nciDEv+YLVNk3rFi5FE8WvzColAIqJu80zrPmRZD7Yt4D5jmFeXARWJD08zAdcgH1XxbUYBZfRfJOZTQ0dmcCkTtwhgnU11gu4btSlbzT5Obv3Ki85JgFIeCFMIAcHWK6CPlSpR9JqojeYRNTZGd84h82XH7UChLyJgvmDAo8YzokNWtkPy3BukNFe35JalfcnfAHrOoB3sCfUokH+PoNE6s2Oal9Bt2MhwEdJgSvGJtf12h0O/gTeJAgsHneaGs76zLA4P9Tpf38mXYRB0K7V9FPaY=
+  app: smoothie-social
+  on:
+    repo: Rigby33/smoothieSocial
