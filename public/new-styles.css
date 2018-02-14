@@ -483,15 +483,25 @@ textarea {
   margin-right: 10px
 }
 
-.measurementwrapper:after {
+.arrowcontainer {
+  display: inline-block;
   position: absolute;
-  font-family: "FontAwesome";
+  font-size: 20px;
+  bottom: 12px;
+  right: 10px;
+  color: var(--dark-golden-yellow);
+}
+
+/*.measurementwrapper:after {
+  position: absolute;
+  display: none;
+  font-family: "Font Awesome 5 Solid";
   font-size: 20px;
   bottom: 12px;
   right: 10px;
   content: '\f078';
   color: var(--darker-grey);
-}
+}*/
 
 .ingredients div {
   display: flex

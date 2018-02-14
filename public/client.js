@@ -72,6 +72,9 @@ function addMoreIngredientFields() {
               <option value="fluid oz.">fluid oz.</option>
               <option value="full amount of">full amount of</option>
           </select>
+          <div class="arrowcontainer">
+          <i class="fas fa-angle-down"></i>
+          </div>
       </div>
               <input type="text" name="ingredient" placeholder="ingredient">
           </div>`);
