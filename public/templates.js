@@ -19,6 +19,19 @@
 //     </div>
 //     </div>`);
 
+const headerTemplate = (
+  `<div class="headercontent">
+  <img src="img/logo.svg" alt="smoothie social"/>
+         <nav>
+            <ul>
+               <li><a class="nav-create">create</a></li>
+               <li><a class="nav-community">community</a></li>
+               <li><a class="nav-my-smoothies">my smoothies</a></li>
+            </ul>
+            <button class="logout">logout</button>
+         </nav>
+         </div>`)
+
 const loggedInActivities = (
   ` <div class="activitiesWrapper">
   <div class="column">
@@ -65,7 +78,7 @@ const registrationForm =(
     <h3>REGISTER AS A NEW USER</h3>
     <div class="userquestion"><p>Already a member?</p><button class="loginQuestion">login</button>
     </div>
-    <div class="warning">hi this is a warning</div>
+    <div class="warning"></div>
     <form class="registrationForm">
       <div class="firstlastnames">
         <input type="text" name="firstName" placeholder="first name">
@@ -90,12 +103,14 @@ const registrationForm =(
 const loginForm = (
   `<div class="userForm userlogin">
     <div class="closebutton">
+    <div>
       <i class="fas fa-times-circle fa-2x"></i>
+      </div>
     </div>
     <h3>LOGIN AND GET STARTED</h3>
     <div class="userquestion"><p>Not a member yet?</p><button class="registerQuestion">register</button>
     </div>
-    <div class="warning">hi this is a warning</div>
+    <div class="warning"></div>
     <form class="loginForm">
       <input type="text" name="username" placeholder="username">
       <input type="password" name="password" placeholder="password">
@@ -106,110 +121,142 @@ const loginForm = (
   </div>`);
 
 const createSmoothieTemplate = (
-  `<div class="smoothieform">
+  `<div class="activitiesWrapper">
+   <div class="smoothieform">
       <form id="createSmoothie">
-        <div>
-        <label for="smoothieName">Smoothie Name</label>
-        <input name="smoothieName" type="text">
-      </div>
-      <div>
-        <label for="ingredients">Ingredients</label>
-        <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
-        <div class="ingredients">
-          <div class="ingredient0">
-            <input type="number" step="any" name="quantity">
-            <select name="measurements">
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-              <input type="text" name="ingredient">
-          </div>
-          <div class="ingredient1">
-            <input type="number" step="any" name="quantity">
-            <select name="measurements">
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-              <input type="text" name="ingredient">
-          </div>
-          <div class="ingredient2">
-            <input type="number" step="any" name="quantity">
-            <select name="measurements">
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-              <input type="text" name="ingredient">
-          </div>
-        </div>
-        <div class="suggestions">
-        </div>
-      </div>
-      <div class="formbuttons">
-        <button class="addmore">Add more ingredients</button>
-        <button type="submit">Blend</button>
-      </div>
+         <div class="formSmoothieName">
+            <label for="smoothieName">Smoothie Name</label>
+            <input name="smoothieName" type="text">
+         </div>
+         <div>
+            <label for="ingredients">Ingredients</label>
+            <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
+            <div class="ingredients">
+               <div class="ingredient0">
+                  <input type="number" step="any" name="quantity" placeholder="amount">
+                  <div class="measurementwrapper">
+                     <select name="measurements">
+                        <option value="cup">cup</option>
+                        <option value="tablespoon">tablespoon</option>
+                        <option value="teaspoon">teaspoon</option>
+                        <option value="fluid oz.">fluid oz.</option>
+                        <option value="full amount of">full amount of</option>
+                     </select>
+                  </div>
+                  <input type="text" name="ingredient" placeholder="ingredient">
+               </div>
+               <div class="ingredient1">
+                  <input type="number" step="any" name="quantity" placeholder="amount">
+                  <div class="measurementwrapper">
+                     <select name="measurements">
+                        <option value="cup">cup</option>
+                        <option value="tablespoon">tablespoon</option>
+                        <option value="teaspoon">teaspoon</option>
+                        <option value="fluid oz.">fluid oz.</option>
+                        <option value="full amount of">full amount of</option>
+                     </select>
+                  </div>
+                  <input type="text" name="ingredient" placeholder="ingredient">
+               </div>
+               <div class="ingredient2">
+                  <input type="number" step="any" name="quantity" placeholder="amount">
+                  <div class="measurementwrapper">
+                     <select name="measurements">
+                        <option value="cup">cup</option>
+                        <option value="tablespoon">tablespoon</option>
+                        <option value="teaspoon">teaspoon</option>
+                        <option value="fluid oz.">fluid oz.</option>
+                        <option value="full amount of">full amount of</option>
+                     </select>
+                  </div>
+                  <input type="text" name="ingredient" placeholder="ingredient">
+               </div>
+            </div>
+            <div class="suggestions">
+            </div>
+         </div>
+         <div class="formbuttons">
+            <button class="addmore">Add more ingredients</button>
+            <button class="blendit" type="submit">Blend it!</button>
+         </div>
       </form>
-    </div>`
+   </div>
+</div>`
 );
 
 const editSmoothieTemplate = (
-  `      <div class="smoothieform">
+  `         <div class="activitiesWrapper">
+   <div class="smoothieform">
       <form id="editSmoothie">
-        <div>
-        <label for="smoothieName">Smoothie Name</label>
-        <input name="smoothieName" type="text">
-      </div>
-      <div>
-        <label for="ingredients">Ingredients</label>
-        <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
-        <div class="ingredients">
-          <div class="ingredient0">
-            <input type="number" name="quantity">
-            <select name="measurements">
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-              <input type="text" name="ingredient">
-          </div>
-          <div class="ingredient1">
-            <input type="number" name="quantity">
-            <select name="measurements">
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-              <input type="text" name="ingredient">
-          </div>
-          <div class="ingredient2">
-            <input type="number" name="quantity">
-            <select name="measurements">
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-              <input type="text" name="ingredient">
-          </div>
-        </div>
-        <div class="suggestions">
-        </div>
-      </div>
-      <div class="formbuttons">
-        <button class="addmore">Add more ingredients</button>
-        <button type="submit">Blend</button>
-      </div>
+         <div class="formSmoothieName">
+            <label for="smoothieName">Smoothie Name</label>
+            <input name="smoothieName" type="text">
+         </div>
+         <div>
+            <label for="ingredients">Ingredients</label>
+            <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
+            <div class="ingredients">
+              <textarea name="ingredients"></textarea>
+            </div>
+         </div>
+         <div class="formbuttons">
+            <button class="addmore">Add more ingredients</button>
+            <button class="blendit" type="submit">Blend it!</button>
+         </div>
       </form>
-    </div>`
-);
+   </div>
+</div>`)
+
+// const editSmoothieTemplate = (
+//   `      <div class="smoothieform">
+//       <form id="editSmoothie">
+//         <div>
+//         <label for="smoothieName">Smoothie Name</label>
+//         <input name="smoothieName" type="text">
+//       </div>
+//       <div>
+//         <label for="ingredients">Ingredients</label>
+//         <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
+//         <div class="ingredients">
+//           <div class="ingredient0">
+//             <input type="number" name="quantity">
+//             <select name="measurements">
+//               <option value="cup">cup</option>
+//               <option value="tablespoon">tablespoon</option>
+//               <option value="teaspoon">teaspoon</option>
+//               <option value="fluid oz.">fluid oz.</option>
+//               <option value="full amount of">full amount of</option>
+//               <input type="text" name="ingredient">
+//           </div>
+//           <div class="ingredient1">
+//             <input type="number" name="quantity">
+//             <select name="measurements">
+//               <option value="cup">cup</option>
+//               <option value="tablespoon">tablespoon</option>
+//               <option value="teaspoon">teaspoon</option>
+//               <option value="fluid oz.">fluid oz.</option>
+//               <option value="full amount of">full amount of</option>
+//               <input type="text" name="ingredient">
+//           </div>
+//           <div class="ingredient2">
+//             <input type="number" name="quantity">
+//             <select name="measurements">
+//               <option value="cup">cup</option>
+//               <option value="tablespoon">tablespoon</option>
+//               <option value="teaspoon">teaspoon</option>
+//               <option value="fluid oz.">fluid oz.</option>
+//               <option value="full amount of">full amount of</option>
+//               <input type="text" name="ingredient">
+//           </div>
+//         </div>
+//       </div>
+//       <div class="formbuttons">
+//         <button class="addmore">Add more ingredients</button>
+//         <button type="submit">Blend</button>
+//       </div>
+//       </form>
+//     </div>`
+// );
 
 // const createSmoothieTemplate = (
 //   `<div class="smoothieform">
@@ -236,19 +283,19 @@ const editSmoothieTemplate = (
 // );
 
 const smoothieTemplate = (
-  `<div class="smoothie js-smoothie">
-  <h3 class="js-recipe-title"></h3>
-  <ul class="js-recipe-ingredients"></ul>
-  <button class="delete">Delete</button>
-  <button class="update">Update</button>
-  <div class="editForm"></div>
+  `<div class="smoothie">
+    <h3 class="smoothieName">Smoothie Recipe</h3>
+    <ul class="ingredientsList"></ul>
+    <div class="deleteedit">
+      <button class="delete">delete</button>
+      <button class="update">update</button>
+    </div>
   </div>`
 );
 
 const allSmoothiesTemplate = (
-  `<div class="smoothie js-smoothie">
-  <h3 class="js-recipe-title"></h3>
-  <ul class="js-recipe-ingredients"></ul>
-  <button class="add">Add to my smoothies</button>
+  `<div class="smoothie">
+    <h3 class="smoothieName">Smoothie Recipe</h3>
+    <ul class="ingredientsList"></ul>
   </div>`
 );

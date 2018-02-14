@@ -50,13 +50,14 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.get('/:recipeid', (req, res) => {
-  recipe.find({id: req.params.recipeid})
-  .then(recipe => {
-    console.log(recipe);
-    return res.status(200).send(recipe);
-  })
-})
+router.get('/update/:recipeid', (req, res) => {
+  recipe.findOne({_id: req.params.recipeid})
+  .then(recipes => {
+    res.status(200).send(recipes);
+  }).catch(err => {
+    res.status(500).send(err);
+  });
+});
 
 // create new recipe
 router.post('/', (req, res) => {
@@ -81,10 +82,11 @@ router.post('/', (req, res) => {
   })
   .then(recipe => {return res.status(201).json(recipe.serialize())})
   .catch(err => {
-    if (err.reason === 'MissingField') {
-      return res.status(err.code).json(err.message);
+    const error = Object.values(err.errors)[0];
+    if (error.kind === 'required') {
+      return res.status(500).json(error.message);
     }
-    res.status(500).json({ error: 'Something went wrong'});
+    res.status(500).json(error[0]);
   });
 });
 

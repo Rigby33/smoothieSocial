@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
-	<link href="new-styles.css" rel="stylesheet">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-</head>
-<body>
+   <head>
+      <title></title>
+      <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700" rel="stylesheet">
+      <link href="new-styles.css" rel="stylesheet">
+      <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   </head>
+   <body>
       <header>
          <img src="img/logo.svg" alt="smoothie social"/>
          <nav>
@@ -19,92 +19,254 @@
             <button class="logout">logout</button>
          </nav>
       </header>
-<div class="activities">
-	<div class="activitiesWrapper">
-	<div class="column">
-		<img src="img/community-icon.png" alt="community icon"/>
-		<h2>Community</h2>
-		<p>Users can view smoothies created by other smoothie social members. You might just get some inspiration for your next creation!</p>
-		<button class="view-all-cta">view member creations</button>
+      <div class="activities">
+      	<div class="activitiesWrapper">
+      		<div class="activitiesWrapper">
+   <div class="smoothieform">
+      <form id="editSmoothie">
+         <div class="formSmoothieName">
+            <label for="smoothieName">Smoothie Name</label>
+            <input name="smoothieName" type="text">
+         </div>
+         <div>
+            <label for="ingredients">Ingredients</label>
+            <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
+            <div class="ingredients">
+            	<textarea name="ingredients"></textarea>
+            </div>
+         </div>
+         <div class="formbuttons">
+            <button class="addmore">Add more ingredients</button>
+            <button class="blendit" type="submit">Blend it!</button>
+         </div>
+      </form>
+   </div>
+</div>
+</div>
+<div class="smoothies">
+	<div class="smoothie">
+		<h3>Smoothie Recipe</h3>
+		<ul class="ingredientsList">
+			<li>1 cup banana</li>
+			<li>1 full amount of orange</li>
+			<li>1.25 cup vanilla almond milk</li>
+		</ul>
+		<div class="deleteedit">
+			<button class="delete">delete</button>
+			<button class="update">update</button>
+		</div>
 	</div>
-	<div class="column">
-		<img src="img/blender-icon.png" alt="blender icon"/>
-		<h2>Create</h2>
-		<p>Create smoothie recipes with the easy to use form. You just need a name for your smoothie and the ingredients and you’re on your way!</p>
-		<button class="create-cta">make a smoothie</button>
+	<div class="smoothie">
+		<h3>Smoothie Recipe</h3>
+		<ul class="ingredientsList">
+			<li>1 cup banana</li>
+			<li>1 full amount of orange</li>
+			<li>1.25 cup vanilla almond milk</li>
+		</ul>
+		<div class="deleteedit">
+			<button class="delete">delete</button>
+			<button class="update">update</button>
+		</div>
 	</div>
-	<div class="column">
-		<img src="img/save-icon.png" alt="save icon"/>
-		<h2>Save</h2>
-		<p>After you create your new recipe it is automatically saved for you. You can view your creations at any time, edit them, or delete them.</p>
-		<button class="save-cta">view your creations</button>
+	<div class="smoothie">
+		<h3>Smoothie Recipe</h3>
+		<ul class="ingredientsList">
+			<li>1 cup banana</li>
+			<li>1 full amount of orange</li>
+			<li>1.25 cup vanilla almond milk</li>
+		</ul>
+		<div class="deleteedit">
+			<button class="delete">delete</button>
+			<button class="update">update</button>
+		</div>
 	</div>
+	<div class="smoothie">
+		<h3>Smoothie Recipe</h3>
+		<ul class="ingredientsList">
+			<li>1 cup banana</li>
+			<li>1 full amount of orange</li>
+			<li>1.25 cup vanilla almond milk</li>
+		</ul>
+		<div class="deleteedit">
+			<button class="delete">delete</button>
+			<button class="update">update</button>
+		</div>
+	</div>
+	<div class="smoothie">
+		<h3>Smoothie Recipe</h3>
+		<ul class="ingredientsList">
+			<li>1 cup banana</li>
+			<li>1 full amount of orange</li>
+			<li>1.25 cup vanilla almond milk</li>
+		</ul>
+		<div class="deleteedit">
+			<button class="delete">delete</button>
+			<button class="update">update</button>
+		</div>
+	</div>
+	<div class="smoothie">
+		<h3>Smoothie Recipe</h3>
+		<ul class="ingredientsList">
+			<li>1 cup banana</li>
+			<li>1 full amount of orange</li>
+			<li>1.25 cup vanilla almond milk</li>
+		</ul>
+		<div class="deleteedit">
+			<button class="delete">delete</button>
+			<button class="update">update</button>
+		</div>
 	</div>
 </div>
-<div class="herosection">
-	<div class="column">
-		<img src="img/logo.svg" alt="smoothie social"/>
-		<h1>Register or login to create, shave, and discover amazing smoothie recipes</h1>
-		<div class="herobuttons">
-			<button class="register">register</button>
-			<button class="login">login</button>
-		</div>
-	</div>
-</div>
-<main>
-	<div class="column">
-		<img src="img/blender-icon.png" alt="blender icon"/>
-		<h2>Create</h2>
-		<p>Create smoothie recipes with the easy to use form. You just need a name for your smoothie and the ingredients and you’re on your way!</p>
-	</div>
-	<div class="column">
-		<img src="img/community-icon.png" alt="community icon"/>
-		<h2>Community</h2>
-		<p>Users can view smoothies created by other smoothie social members. You might just get some inspiration for your next creation!</p>
-	</div>
-	<div class="column">
-		<img src="img/save-icon.png" alt="save icon"/>
-		<h2>Save</h2>
-		<p>After you create your new recipe it is automatically saved for you. You can view your creations at any time, edit them, or delete them.</p>
-	</div>
-</main>
-<div class="userFormWrapper">
-	<div class="userForm userlogin">
-		<div class="closebutton">
-			<i class="fas fa-times-circle fa-2x"></i>
-		</div>
-		<h3>LOGIN AND GET STARTED</h3>
-		<div class="userquestion"><p>Not a member yet?</p><button class="registerQuestion">register</button>
-		</div>
-		<div class="warning">hi this is a warning</div>
-		<form class="loginForm">
-			<input type="text" name="username" placeholder="username">
-			<input type="text" name="password" placeholder="password">
-			<div class="submitbutton">
-			<button type="submit">login</button>
-		</div>
-		</form>
-	</div>
-<!-- 	<div class="userForm">
-		<div class="closebutton">
-			<i class="fas fa-times-circle fa-2x"></i>
-		</div>
-		<h3>REGISTER AS A NEW USER</h3>
-		<div class="userquestion"><p>Already a member?</p><button class="loginQuestion">login</button>
-		</div>
-		<div class="warning">hi this is a warning</div>
-		<form class="registrationForm">
-			<div class="firstlastnames">
-				<input type="text" name="firstName" placeholder="first name">
-				<input type="text" name="lastName" placeholder="last name">
-			</div>
-			<input type="text" name="username" placeholder="username">
-			<input type="text" name="password" placeholder="password">
-			<div class="submitbutton">
-			<button type="submit">register</button>
-		</div>
-		</form>
-	</div> -->
-</div>
-</body>
+         <div class="activitiesWrapper">
+  <div class="smoothieform">
+      <form id="createSmoothie">
+        <div class="formSmoothieName">
+        <label for="smoothieName">Smoothie Name</label>
+        <input name="smoothieName" type="text">
+      </div>
+      <div>
+        <label for="ingredients">Ingredients</label>
+        <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
+        <div class="ingredients">
+          <div class="ingredient0">
+            <input type="number" step="any" name="quantity" placeholder="amount">
+            <div class="measurementwrapper">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+          </select>
+      </div>
+              <input type="text" name="ingredient" placeholder="ingredient">
+          </div>
+          <div class="ingredient1">
+            <input type="number" step="any" name="quantity" placeholder="amount">
+            <div class="measurementwrapper">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+          </select>
+      </div>
+              <input type="text" name="ingredient" placeholder="ingredient">
+          </div>
+          <div class="ingredient2">
+            <input type="number" step="any" name="quantity" placeholder="amount">
+            <div class="measurementwrapper">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+          </select>
+      </div>
+              <input type="text" name="ingredient" placeholder="ingredient">
+          </div>
+        </div>
+        <div class="suggestions">
+        </div>
+      </div>
+      <div class="formbuttons">
+        <button class="addmore">Add more ingredients</button>
+        <button class="blendit" type="submit">Blend it!</button>
+      </div>
+      </form>
+    </div>
+    </div>
+         <div class="activitiesWrapper">
+            <div class="column">
+            	<img src="img/community-icon.png" alt="community icon"/>
+            	<h2>Community</h2>
+            	<p>Users can view smoothies created by other smoothie social members. You might just get some inspiration for your next creation!</p>
+            	<button class="view-all-cta">view member creations</button>
+            </div>
+            <div class="column">
+            	<img src="img/blender-icon.png" alt="blender icon"/>
+            	<h2>Create</h2>
+            	<p>Create smoothie recipes with the easy to use form. You just need a name for your smoothie and the ingredients and you’re on your way!</p>
+            	<button class="create-cta">make a smoothie</button>
+            </div>
+            <div class="column">
+            	<img src="img/save-icon.png" alt="save icon"/>
+            	<h2>Save</h2>
+            	<p>After you create your new recipe it is automatically saved for you. You can view your creations at any time, edit them, or delete them.</p>
+            	<button class="save-cta">view your creations</button>
+            </div>
+            </div>
+      </div>
+      <div class="herosection">
+         <div class="column">
+            <img src="img/logo.svg" alt="smoothie social"/>
+            <h1>Register or login to create, shave, and discover amazing smoothie recipes</h1>
+            <div class="herobuttons">
+               <button class="register">register</button>
+               <button class="login">login</button>
+            </div>
+         </div>
+      </div>
+      <main>
+         <div class="mainWrapper">
+            <div class="column">
+               <img src="img/blender-icon.png" alt="blender icon"/>
+               <h2>Create</h2>
+               <p>Create smoothie recipes with the easy to use form. You just need a name for your smoothie and the ingredients and you’re on your way!</p>
+            </div>
+            <div class="column">
+               <img src="img/community-icon.png" alt="community icon"/>
+               <h2>Community</h2>
+               <p>Users can view smoothies created by other smoothie social members. You might just get some inspiration for your next creation!</p>
+            </div>
+            <div class="column">
+               <img src="img/save-icon.png" alt="save icon"/>
+               <h2>Save</h2>
+               <p>After you create your new recipe it is automatically saved for you. You can view your creations at any time, edit them, or delete them.</p>
+            </div>
+         </div>
+      </main>
+      <div class="userFormWrapper">
+         <!-- 	<div class="userForm userlogin">
+            <div class="closebutton">
+            	<i class="fas fa-times-circle fa-2x"></i>
+            </div>
+            <h3>LOGIN AND GET STARTED</h3>
+            <div class="userquestion"><p>Not a member yet?</p><button class="registerQuestion">register</button>
+            </div>
+            <div class="warning">hi this is a warning</div>
+            <form class="loginForm">
+            	<input type="text" name="username" placeholder="username">
+            	<input type="text" name="password" placeholder="password">
+            	<div class="submitbutton">
+            	<button type="submit">login</button>
+            </div>
+            </form>
+            </div> -->
+         <div class="userForm">
+            <div class="closebutton">
+               <i class="fas fa-times-circle fa-2x"></i>
+            </div>
+            <h3>REGISTER AS A NEW USER</h3>
+            <div class="userquestion">
+               <p>Already a member?</p>
+               <button class="loginQuestion">login</button>
+            </div>
+            <div class="warning">hi this is a warning</div>
+            <form class="registrationForm">
+               <div class="firstlastnames">
+                  <input type="text" name="firstName" placeholder="first name">
+                  <input type="text" name="lastName" placeholder="last name">
+               </div>
+               <input type="text" name="username" placeholder="username">
+               <input type="text" name="password" placeholder="password">
+               <div class="submitbutton">
+                  <button type="submit">register</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </body>
 </html>

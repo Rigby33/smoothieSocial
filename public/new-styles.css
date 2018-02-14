@@ -3,6 +3,7 @@
   --dark-golden-yellow: #B08D27;
   --dark-pink: #B3748F;
   --light-pink: #F8A1C6;
+  --even-darker-green: #658C36;
   --darker-green: #97D151;
   --lighter-green: #C3E39F;
   --light-grey: #EEEEEE;
@@ -21,9 +22,15 @@
 body {
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+  background: url('img/smoothiebackground.jpg') center/cover fixed no-repeat;
 }
 
 header {
+  display: none;
+  position: relative;
+}
+
+.headercontent {
   background-color: var(--darker-green);
   display: flex;
   width: 100%;
@@ -32,7 +39,7 @@ header {
   padding: 20px;
 }
 
-header > img {
+.headercontent > img {
   width: 20%
 }
 
@@ -58,9 +65,15 @@ nav > ul li {
 nav > ul li a {
   padding: 10px 10px 15px 10px;
   cursor: pointer;
+  display: block;
+  border-bottom: 2px solid transparent;
 }
 
 nav > ul li a:hover {
+  border-bottom: 2px solid var(--golden-yellow);
+}
+
+.active {
   border-bottom: 2px solid var(--golden-yellow);
 }
 
@@ -81,10 +94,15 @@ button {
   transition: all .25s ease;
 }
 
+.fadein{
+  display: none;
+}
+
 .herosection {
   background: url('img/greensmoothie.png') right center/50% no-repeat, linear-gradient(var(--darker-green), var(--lighter-green));
   box-shadow: var(--boxshadow);
   border-bottom: 2px solid var(--darker-green);
+  position: relative;
 }
 
 .herosection > .column {
@@ -133,6 +151,10 @@ button {
   color: white;
 }
 
+main {
+  background-color: white;
+}
+
 .mainWrapper {
   display: flex;
   justify-content: space-around;
@@ -170,13 +192,16 @@ h2 {
 
 .activities {
   background: linear-gradient(var(--darker-green), var(--lighter-green));
+  border-bottom: 2px solid var(--darker-green);
+  box-shadow: var(--boxshadow);
+
 }
 
 .activitiesWrapper {
   display: flex;
   justify-content: space-around;
   width: 90%;
-  padding: 100px 0 150px;
+  padding: 70px 0 150px;
   margin: 0 auto;
   flex-wrap: wrap;
 }
@@ -216,7 +241,7 @@ h2 {
   color: white;  
 }
 
-input {
+input, textarea {
   font-size: 1em
 }
 
@@ -237,6 +262,11 @@ input {
 
 .closebutton > div {
   display: inline-block;
+  cursor: pointer;
+}
+
+.closebutton > div:hover {
+  color: var(--even-darker-green);
 }
 
 .userForm {
@@ -306,6 +336,7 @@ input {
   margin-bottom: 20px;
   text-align: center;
   box-shadow: var(--boxshadow-two);
+  display: none;
 }
 
 .registrationForm {
@@ -335,12 +366,17 @@ input {
   margin-left: 5px
 }
 
-input {
+input, textarea {
   padding: 20px;
   border-radius: 30px;
   box-shadow: var(--boxshadow-two);
   border: 0;
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  color: var(--darker-grey);
+}
+
+textarea {
+  height: 100px
 }
 
 .submitbutton {
@@ -373,20 +409,263 @@ input {
   color: white;  
 }
 
+.smoothieform {
+  background-color: var(--light-grey);
+  padding: 30px;
+  border-radius: 10px;
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.smoothieform p {
+  margin: 10px 0 20px;
+  font-weight: 300;
+  color: var(--darker-grey);
+}
+
+.smoothieform > label {
+  display: block
+}
+
+.formSmoothieName {
+  display: flex;
+  flex-direction: column;
+}
+
+.smoothieform label {
+  color: var(--darker-grey);
+  margin-bottom: 10px;
+  font-weight: 300;
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+
+.smoothieform input, .smoothieform select, .smoothieform textarea {
+  padding: 15px;
+}
+
+.smoothieform select {
+  -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   font-size: 1em;
+   background-color: transparent;
+   border: 0;
+     border-radius: 30px;
+
+/*   background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;*/
+  position: relative;
+  z-index: 1
+}
+
+.measurementwrapper {
+  width: 100%;
+  position: relative;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: var(--boxshadow-two);
+  border: 0;
+  margin-bottom: 20px;
+  margin-right: 10px
+}
+
+.measurementwrapper:after {
+  position: absolute;
+  font-family: "FontAwesome";
+  font-size: 20px;
+  bottom: 12px;
+  right: 10px;
+  content: '\f078';
+  color: var(--darker-grey);
+}
+
+.ingredients div {
+  display: flex
+}
+
+.ingredients input, .ingredients select, .ingredients textarea {
+  width: 100%;
+}
+
+.ingredients input:nth-child(1) {
+  margin-right: 10px;
+  width: 50%
+}
+
+.addmore {
+  background-color: var(--golden-yellow);
+  color: var(--dark-golden-yellow);
+  border: 2px solid var(--dark-golden-yellow);
+}
+
+.addmore:hover {
+  background-color: var(--dark-golden-yellow);
+  color: white;
+}
+
+.blendit {
+  background-color: var(--darker-green);
+  color: var(--even-darker-green);
+  border: 2px solid var(--even-darker-green);
+}
+
+.blendit:hover {
+  background-color: var(--even-darker-green);
+  color: white;
+}
+
+.formbuttons {
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-top: 20px
+}
+
+.smoothies {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 70px 0;
+}
+
+.smoothie {
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  box-shadow: var(--boxshadow);
+  width: 25%;
+  flex:1 1 auto;
+}
+
+.smoothie h3 {
+  color: var(--darker-grey);
+  font-weight: 500;
+  margin-bottom: 20px
+}
+
+.smoothie ul {
+  list-style: none;
+  color: var(--darker-grey);
+  margin-bottom: 20px
+}
+
+.update {
+  background-color: var(--darker-green);
+  color: var(--even-darker-green);
+  border: 2px solid var(--even-darker-green);
+}
+
+.update:hover {
+  background-color: var(--even-darker-green);
+  color: white;
+}
+
+.delete {
+  background-color: var(--light-pink);
+  color: var(--dark-pink);
+  border: 2px solid var(--dark-pink);
+}
+
+.delete:hover {
+  background-color: var(--dark-pink);
+  color: white;
+}
+
+@media only screen and (max-width: 1700px) {
+  .smoothieform {
+    width: 65%
+  }
+}
+
+@media only screen and (max-width: 1333px) {
+  .smoothies {
+    width: 90%
+  }
+  .formbuttons {
+    width: 90%
+  }
+}
+
 @media only screen and (max-width: 1199px) {
   .herosection > .column {
     width: 50%;
     padding:100px 0 100px 50px;
   }
-  main {
+  main, .activities {
+    width: 100%;
+  }
+  .mainWrapper > .column, .activitiesWrapper > .column {
+    width: 20%
+  }
+  .userForm {
+    width: 80%;
+    margin: 50px auto;
+    padding: 15px 20px 20px;
+  }
+  input {
+    padding: 15px;
+  }
+  .registrationForm > div > button, .loginForm > div > button {
+    margin-top: 0;
+  }
+  .smoothie {
+    margin-left: 10px;
+    margin-right: 10px
+  }
+}
+
+@media only screen and (max-width: 890px) {
+  .smoothies {
     width: 100%
   }
-  main > .column {
-    width: 20%
+  .smoothie {
+    width: 40%
+  }
+  .smoothieform {
+    width: 90%
   }
 }
 
 @media only screen and (max-width: 767px) {
+  .headercontent {
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+  .headercontent > img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 90%
+  }
+  nav {
+    text-align: center
+  }
+  nav > ul {
+    width: 100%;
+    font-size: 1em;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px
+  }
   .herosection {
     background: linear-gradient(var(--darker-green), var(--lighter-green));
   }
@@ -409,9 +688,33 @@ input {
   main {
     padding-bottom: 60px;
   }
-  main > .column {
-    width: 100%;
-    margin-bottom: 20px;
+  .mainWrapper, .activitiesWrapper {
+    padding-bottom: 0;
   }
+  .mainWrapper > .column, .activitiesWrapper > .column {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .activities {
+    padding-bottom: 20px
+  }
+  .activitiesWrapper {
+    padding-top: 40px
+  }
+  .smoothie {
+    width: 100%;
+    text-align: center
+  }
+  .ingredients > div {
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--dark-pink);
+    margin-bottom: 20px
+  }
+  input[name=ingredient], .measurementwrapper, .ingredients input:nth-child(1) {
+    width: 100%;
+    margin-left: 0;
+    margin-right:0;
+  }
+
 }
 

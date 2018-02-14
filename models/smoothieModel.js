@@ -6,7 +6,7 @@ const smoothieSchema = mongoose.Schema({
   title: {type: String, required: true},
   userId: {type: mongoose.Schema.ObjectId, ref: 'user'},
   ingredients: {type: Array, required: true},
-  created: {type: Date, default: Date.now}
+  created: {type: Date, default: Date.now},
 });
 
 smoothieSchema.methods.serialize = function() {

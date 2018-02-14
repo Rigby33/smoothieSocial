@@ -75,9 +75,17 @@ function logIn() {
         return;
       }
       $('.userFormWrapper').hide();
+      fadeInIfLoggedIn();
       loadUserActions();
       $('header').show();
+      $('header').html(headerTemplate);
+      $('.activities').show();
+      $('.activities').html(loggedInActivities);
       $('.herosection').hide();
+      // loadUserActions();
+      // $('header').show();
+      // $('header').html(headerTemplate);
+      // $('.herosection').hide();
       console.log('you have been logged in');
     }).fail(err => {
       console.log(err);
@@ -97,19 +105,23 @@ function logIn() {
 
 function loadUserActions() {
   $('main').hide();
-  $('.activities').show();
-  $('.activities').html(loggedInActivities);
+}
+
+function fadeInIfLoggedIn() {
+  $('.fadeinsecond').fadeIn(800);
 }
 
 function isUserLoggedIn() {
   if(localStorage.getItem('userId')) {
     // hideRegisterLogin();
     // displayCurrentRecipes();
+    fadeInIfLoggedIn();
     loadUserActions();
     $('header').show();
+    $('header').html(headerTemplate);
+    $('.activities').show();
+    $('.activities').html(loggedInActivities);
     $('.herosection').hide();
-  } else {
-    $('header').hide();
   }
 }
 
@@ -156,7 +168,7 @@ function isUserLoggedIn() {
 // }
 
 function logout() {
-  $('.logout').on('click', () => {
+  $('body').on('click', '.logout', () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('token');
     $('.activities').hide();
