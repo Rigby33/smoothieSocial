@@ -1,9 +1,7 @@
 'use strict';
 exports.DATABASE_URL =
-  process.env.DATABASE_URL ||
-  global.DATABASE_URL ||
-  'mongodb://admin:passwordpassword@ds233208.mlab.com:33208/smoothiesocialdb';
-exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL || 'mongodb://admin:passwordpassword@ds131698.mlab.com:31698/test-smoothiesocialdb';
+  process.env.DATABASE_URL;
+exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL;
 exports.PORT = process.env.PORT || 8080;
 exports.JWT_SECRET = process.env.JWT_SECRET;
 exports.JWT_EXPIRY = process.env.JWT_EXPIRY || '7d';
