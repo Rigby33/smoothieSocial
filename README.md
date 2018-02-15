@@ -1,5 +1,5 @@
-# smoothie social
-***
+# smoothie social [![Build Status](https://travis-ci.org/Rigby33/smoothieSocial.svg?branch=master)](https://travis-ci.org/Rigby33/smoothieSocial)
+
 [Live URL](#live-url) | [Summary of app](#summary-of-application) | [Technologies used](#technologies-used) | [RESTful API](#restful-api)
 ***
 
@@ -8,7 +8,7 @@
 smoothie social is a app where users can create, save, view, and edit smoothie recipes. Once a user has logged in they can create a smoothie and view smoothies created by other smoothie social users.
 
 ## Live url
-***
+
 https://smoothie-social.herokuapp.com/
 
 **demo username**: testuser
@@ -16,7 +16,7 @@ https://smoothie-social.herokuapp.com/
 **demo password**: passwordpassword
 
 ## Summary of Application
-***
+
 When smoothie social loads the user is greeted with the logo and a little intro text about what a user can so with the app. A user can choose to register or if they are an exiting user the can log in. Users need to login to be able to use the app.
 
 ![smoothie social home screen image](https://i.imgur.com/5TGVovF.jpg)
@@ -40,7 +40,7 @@ After clicking the "blend it!" button they are taken to see the smoothies that t
 This is the view the user is greeted with if they select edit on any of their smoothie recipes.
 
 ## Technologies Used
-***
+
 ### Front End
   - HTML5
   - CSS3
@@ -54,7 +54,7 @@ This is the view the user is greeted with if they select edit on any of their sm
   - Mongoose
 
 ## RESTful API
-***
+
 ### /smoothie endpoint
 
 #### GET
