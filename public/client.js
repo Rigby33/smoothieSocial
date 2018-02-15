@@ -59,7 +59,7 @@ function viewMySmoothies() {
 });
 }
 
- let classNumber = 0;
+ 
 function addMoreIngredientFields() {
     classNumber ++;
     $('.ingredients').append(`<div class="ingredient${classNumber + 1}">
@@ -82,33 +82,54 @@ function addMoreIngredientFields() {
 
 function addNewRecipe() {
   let amountOfIngredients;
+  let classNumber = 0;
   $('body').on('click', '.create-cta, .nav-create', () => {
-    $('body').on('click', '.addmore', (event) => {
-      addMoreIngredientFields();
-    });
-    $.ajax({
-      url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
-      type: 'GET',
-      headers: {
-        authorization: myStorage.tokenKey
-      }
-  }).done(recipes => {
-    let recipeVals = {
-      recipes: recipes
-    };
-    let recipeElement = recipeVals.recipes.map((recipe) => {
-      let element = $(smoothieTemplate);
-      let ingredients = recipe.ingredients.map((ingredient) => `<li>${ingredient}</li>`);
-      element.find('.js-recipe-title').text(recipe.title);
-      element.find('.js-recipe-ingredients').html(ingredients);
-      element.find('.delete').attr('value', recipe._id);
-      element.find('.update').attr('value', recipe._id);
-      return element
-    });
-    }).fail(err => console.log(err));
+      let classNumber = 0;
     $('.activities').html(createSmoothieTemplate);
+    $('body').on('click', '.addmore', (event) => {
+      event.preventDefault();
+      classNumber ++;
+      console.log(classNumber);
+    $('.ingredients').append(`<div class="ingredient${classNumber + 1}">
+            <input type="number" step="any" name="quantity" placeholder="amount">
+            <div class="measurementwrapper">
+            <select name="measurements">
+              <option value="cup">cup</option>
+              <option value="tablespoon">tablespoon</option>
+              <option value="teaspoon">teaspoon</option>
+              <option value="fluid oz.">fluid oz.</option>
+              <option value="full amount of">full amount of</option>
+          </select>
+          <div class="arrowcontainer">
+          <i class="fas fa-angle-down"></i>
+          </div>
+      </div>
+              <input type="text" name="ingredient" placeholder="ingredient">
+          </div>`);
+    });
+  //   $.ajax({
+  //     url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
+  //     type: 'GET',
+  //     headers: {
+  //       authorization: myStorage.tokenKey
+  //     }
+  // }).done(recipes => {
+  //   let recipeVals = {
+  //     recipes: recipes
+  //   };
+  //   let recipeElement = recipeVals.recipes.map((recipe) => {
+  //     let element = $(smoothieTemplate);
+  //     let ingredients = recipe.ingredients.map((ingredient) => `<li>${ingredient}</li>`);
+  //     element.find('.js-recipe-title').text(recipe.title);
+  //     element.find('.js-recipe-ingredients').html(ingredients);
+  //     element.find('.delete').attr('value', recipe._id);
+  //     element.find('.update').attr('value', recipe._id);
+  //     return element
+  //   });
+  //   }).fail(err => console.log(err));
+  //   $('.activities').html(createSmoothieTemplate);
   });
-  $('.activities').on('submit', '#createSmoothie', (event) => {
+  $('.activities').on('click', '.blendit', (event) => {
     event.preventDefault();
     amountOfIngredients = $('.ingredients > div').length;
     let ingredients;
@@ -140,8 +161,8 @@ function addNewRecipe() {
     $('.activities').html('<div class="smoothies"></div>');
       displayCurrentRecipes();
     }).fail((err) => {
-      $('.error').html(err.message);
-      console.log(err);
+      $('.warning').show();
+      $('.warning').text(err.responseJSON);
     });
   });
 }

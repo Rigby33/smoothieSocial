@@ -49,6 +49,7 @@ const registrationForm =(
       </div>
       <input type="text" name="username" placeholder="username">
       <input type="password" name="password" placeholder="password">
+      <input type="password" name="confirmpass" placeholder="confirm password">
       <div class="submitbutton">
       <button type="submit">register</button>
     </div>
@@ -80,13 +81,14 @@ const createSmoothieTemplate = (
   `<div class="activitiesWrapper">
    <div class="smoothieform">
       <form id="createSmoothie">
+      <div class="warning"></div>
          <div class="formSmoothieName">
             <label for="smoothieName">Smoothie Name</label>
             <input name="smoothieName" type="text">
          </div>
          <div>
             <label for="ingredients">Ingredients</label>
-            <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and other to create the smoothie just like how you intended</p>
+            <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and others to create the smoothie just like how you intended</p>
             <div class="ingredients">
                <div class="ingredient0">
                   <input type="number" step="any" name="quantity" placeholder="amount">
@@ -102,10 +104,10 @@ const createSmoothieTemplate = (
                      <i class="fas fa-angle-down"></i>
                      </div>
                   </div>
-                  <input type="text" name="ingredient" placeholder="ingredient">
+                  <input type="text" name="ingredient" placeholder="ingredient" required>
                </div>
                <div class="ingredient1">
-                  <input type="number" step="any" name="quantity" placeholder="amount">
+                  <input type="number" step="any" name="quantity" placeholder="amount" required>
                   <div class="measurementwrapper">
                      <select name="measurements">
                         <option value="cup">cup</option>
@@ -118,10 +120,10 @@ const createSmoothieTemplate = (
                      <i class="fas fa-angle-down"></i>
                      </div>
                   </div>
-                  <input type="text" name="ingredient" placeholder="ingredient">
+                  <input type="text" name="ingredient" placeholder="ingredient" required>
                </div>
                <div class="ingredient2">
-                  <input type="number" step="any" name="quantity" placeholder="amount">
+                  <input type="number" step="any" name="quantity" placeholder="amount" required>
                   <div class="measurementwrapper">
                      <select name="measurements">
                         <option value="cup">cup</option>
@@ -134,10 +136,8 @@ const createSmoothieTemplate = (
                      <i class="fas fa-angle-down"></i>
                      </div>
                   </div>
-                  <input type="text" name="ingredient" placeholder="ingredient">
+                  <input type="text" name="ingredient" placeholder="ingredient" required>
                </div>
-            </div>
-            <div class="suggestions">
             </div>
          </div>
          <div class="formbuttons">

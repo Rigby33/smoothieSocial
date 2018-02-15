@@ -13,6 +13,11 @@ function signUp() {
     const password = $('[name=password]').val().trim();
     const firstName = $('[name=firstName]').val();
     const lastName = $('[name=lastName]').val();
+    const passwordConfirm = $('[name=confirmpass').val();
+    if (password !== passwordConfirm) {
+      $('.warning').show();
+      $('.warning').text('Your passwords do not match');
+    } else { 
     const newUser = {
       username: username,
       password: password,
@@ -32,6 +37,7 @@ function signUp() {
       $('.warning').text(err.responseJSON.message);
       console.log(err.responseJSON.message);
     });
+  }
   });
 }
 
@@ -82,26 +88,12 @@ function logIn() {
       $('.activities').show();
       $('.activities').html(loggedInActivities);
       $('.herosection').hide();
-      // loadUserActions();
-      // $('header').show();
-      // $('header').html(headerTemplate);
-      // $('.herosection').hide();
       console.log('you have been logged in');
     }).fail(err => {
       console.log(err);
     });
   });  
 }
-
-// function loadLoginForm() {
-//   $('.login').on('click', function() {
-//     $('.userform').html(loginForm);
-//     $('.buttoncolumn > h1').hide();
-//     $('.login').hide()
-//     $('.register').show();
-//     $('.userform').show();
-//   });
-// }
 
 function loadUserActions() {
   $('main').hide();
@@ -113,8 +105,7 @@ function fadeInIfLoggedIn() {
 
 function isUserLoggedIn() {
   if(localStorage.getItem('userId')) {
-    // hideRegisterLogin();
-    // displayCurrentRecipes();
+
     fadeInIfLoggedIn();
     loadUserActions();
     $('header').show();
@@ -125,47 +116,6 @@ function isUserLoggedIn() {
   }
 }
 
-// function hideRegisterLogin() {
-//   $('.register').hide();
-//   $('.login').hide();
-// }
-
-// function logIn() {
-//   $('.herosection').on('submit', '#loginForm', function(event) {
-//     event.preventDefault();
-//     let userLogIn = {
-//       username: $('[name=username]').val(),
-//       password: $('[name=password]').val()
-//     }
-//     $.ajax({
-//       url: LOGIN_URL,
-//       type: 'POST',
-//       contentType: 'application/json',
-//       data: JSON.stringify(userLogIn)
-//     }).done(response => {
-//       localStorage.setItem('tokenKey', response.token);
-//       localStorage.setItem('userId', response.userId);
-//       if(response == 'Username not found') {
-//         $('.warning').show();
-//         $('.warning').text('Username not found');
-//         console.log('Username not found');
-//         return;
-//       }
-//       if(response == 'Password is incorrect') {
-//         $('.warning').show();
-//         $('.warning').text('Password is incorrect');
-//         console.log('Password is incorrect');
-//         return;
-//       }
-//       loadUserActions();
-//       $('header').show();
-//       $('.herosection').hide();
-//       console.log('you have been logged in');
-//     }).fail(err => {
-//       console.log(err);
-//     });
-//   });
-// }
 
 function logout() {
   $('body').on('click', '.logout', () => {
@@ -173,7 +123,6 @@ function logout() {
     localStorage.removeItem('token');
     $('.activities').hide();
     $('main').show();
-    // $('#js-smoothies').empty();
     $('.herosection').show();
     $('header').hide();
   });
@@ -182,5 +131,4 @@ function logout() {
 $(logout);
 $(isUserLoggedIn);
 $(logIn);
-// $(loadLoginForm);
 $(signUp);

@@ -55,7 +55,7 @@ nav > ul {
   margin-right: 10px;
   color: white;
   font-size: 1.2em;
-  font-weight: 300
+  font-weight: 400
 }
 
 nav > ul li {
@@ -96,6 +96,7 @@ button {
 
 .fadein{
   display: none;
+  heigh: 100vh;
 }
 
 .herosection {
@@ -103,11 +104,12 @@ button {
   box-shadow: var(--boxshadow);
   border-bottom: 2px solid var(--darker-green);
   position: relative;
+  height: 60vh
 }
 
 .herosection > .column {
   width: 45%;
-  padding:175px 0 150px 150px;
+  padding:150px 0 150px 150px;
 }
 
 .herosection > .column > img {
@@ -153,13 +155,14 @@ button {
 
 main {
   background-color: white;
+  height: 40vh;
 }
 
 .mainWrapper {
   display: flex;
   justify-content: space-around;
   width: 90%;
-  padding: 60px 0 100px;
+  padding: 60px 0;
   margin: 0 auto;
   flex-wrap: wrap;
 }
@@ -170,14 +173,14 @@ main {
 }
 
 .mainWrapper > .column > img {
-  width: 40%;
+  width: 35%;
   display: block;
   margin: 0 auto 10px;
 }
 
 h2 {
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
   color: var(--darker-green);
   font-size: 1.3em;
@@ -187,14 +190,14 @@ h2 {
 .mainWrapper > .column > p {
   text-align: center;
   color: var(--darker-grey);
-  font-weight: 300
+  font-weight: 400
 }
 
 .activities {
   background: linear-gradient(var(--darker-green), var(--lighter-green));
   border-bottom: 2px solid var(--darker-green);
   box-shadow: var(--boxshadow);
-
+  display: none;
 }
 
 .activitiesWrapper {
@@ -225,7 +228,7 @@ h2 {
 .activitiesWrapper > .column > p {
   text-align: center;
   color: var(--darker-grey);
-  font-weight: 300
+  font-weight: 400
 }
 
 .activitiesWrapper > .column > button {
@@ -296,7 +299,7 @@ input, textarea {
 .userquestion > p {
   color: var(--darker-grey);
   margin-right: 10px;
-  font-weight: 300
+  font-weight: 400
 }
 
 .userquestion > button {
@@ -421,7 +424,7 @@ textarea {
 
 .smoothieform p {
   margin: 10px 0 20px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--darker-grey);
 }
 
@@ -437,7 +440,7 @@ textarea {
 .smoothieform label {
   color: var(--darker-grey);
   margin-bottom: 10px;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.2em;
   text-transform: uppercase;
 }
@@ -492,17 +495,6 @@ textarea {
   color: var(--dark-golden-yellow);
 }
 
-/*.measurementwrapper:after {
-  position: absolute;
-  display: none;
-  font-family: "Font Awesome 5 Solid";
-  font-size: 20px;
-  bottom: 12px;
-  right: 10px;
-  content: '\f078';
-  color: var(--darker-grey);
-}*/
-
 .ingredients div {
   display: flex
 }
@@ -551,7 +543,7 @@ textarea {
   flex-wrap: wrap;
   width: 75%;
   margin: 0 auto;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 70px 0;
 }
 
@@ -564,7 +556,7 @@ textarea {
   margin-right: 30px;
   box-shadow: var(--boxshadow);
   width: 25%;
-  flex:1 1 auto;
+/*  flex:1 1 auto;*/
 }
 
 .smoothie h3 {
@@ -577,6 +569,10 @@ textarea {
   list-style: none;
   color: var(--darker-grey);
   margin-bottom: 20px
+}
+
+.smoothie li {
+  margin-bottom: 15px;
 }
 
 .update {
@@ -604,6 +600,21 @@ textarea {
 @media only screen and (max-width: 1700px) {
   .smoothieform {
     width: 65%
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .herosection {
+    height: 55vh
+  }
+  .herosection > .column {
+    padding: 120px 0 120px 150px;
+  }
+  main {
+    height: 45vh
+  }
+  .mainwrapper {
+    padding: 40px 0;
   }
 }
 
@@ -644,6 +655,24 @@ textarea {
   }
 }
 
+@media only screen and (max-width: 1024px) {
+  .herosection > .column > img {
+    width: 90%
+  }
+  main, .herosection {
+    height: auto;
+  }
+  .herosection > .column {
+    padding: 150px 0 150px 50px;
+  }
+  .mainWrapper > .column {
+    width: 100%
+  }
+  .mainWrapper > .column > img {
+    width: 20%
+  }
+}
+
 @media only screen and (max-width: 890px) {
   .smoothies {
     width: 100%
@@ -656,7 +685,7 @@ textarea {
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .headercontent {
     flex-wrap: wrap;
     padding: 10px;
@@ -678,6 +707,7 @@ textarea {
   }
   .herosection {
     background: linear-gradient(var(--darker-green), var(--lighter-green));
+    height: auto;
   }
   .herosection > .column {
     width: 100%;
@@ -697,6 +727,7 @@ textarea {
   }
   main {
     padding-bottom: 60px;
+    height: auto;
   }
   .mainWrapper, .activitiesWrapper {
     padding-bottom: 0;
@@ -705,9 +736,9 @@ textarea {
     width: 100%;
     margin-bottom: 40px;
   }
-/*  .activities {
-    padding-bottom: 20px
-  }*/
+  .mainWrapper > .column > img {
+    width: 40%
+  }
   .activitiesWrapper {
     padding-top: 40px;
     padding-bottom: 20px;
