@@ -61,11 +61,11 @@ function viewMySmoothies() {
 
  
 function addMoreIngredientFields() {
-    classNumber ++;
-    $('.ingredients').append(`<div class="ingredient${classNumber + 1}">
+    $('.ingredients').append(`<div class="ingredient">
             <input type="number" step="any" name="quantity" placeholder="amount">
             <div class="measurementwrapper">
             <select name="measurements">
+              <option value="" disabled selected>Select measurement</option>
               <option value="cup">cup</option>
               <option value="tablespoon">tablespoon</option>
               <option value="teaspoon">teaspoon</option>
@@ -82,62 +82,41 @@ function addMoreIngredientFields() {
 
 function addNewRecipe() {
   let amountOfIngredients;
-  let classNumber = 0;
   $('body').on('click', '.create-cta, .nav-create', () => {
-      let classNumber = 0;
     $('.activities').html(createSmoothieTemplate);
-    $('body').on('click', '.addmore', (event) => {
-      event.preventDefault();
-      classNumber ++;
-      console.log(classNumber);
-    $('.ingredients').append(`<div class="ingredient${classNumber + 1}">
-            <input type="number" step="any" name="quantity" placeholder="amount">
-            <div class="measurementwrapper">
-            <select name="measurements">
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-          </select>
-          <div class="arrowcontainer">
-          <i class="fas fa-angle-down"></i>
-          </div>
-      </div>
-              <input type="text" name="ingredient" placeholder="ingredient">
-          </div>`);
+    $('.activities').on('click', '.addmore', (event) => {
+      addMoreIngredientFields();
     });
-  //   $.ajax({
-  //     url: `${SMOOTHIES_URL}/${localStorage.getItem('userId')}`,
-  //     type: 'GET',
-  //     headers: {
-  //       authorization: myStorage.tokenKey
-  //     }
-  // }).done(recipes => {
-  //   let recipeVals = {
-  //     recipes: recipes
-  //   };
-  //   let recipeElement = recipeVals.recipes.map((recipe) => {
-  //     let element = $(smoothieTemplate);
-  //     let ingredients = recipe.ingredients.map((ingredient) => `<li>${ingredient}</li>`);
-  //     element.find('.js-recipe-title').text(recipe.title);
-  //     element.find('.js-recipe-ingredients').html(ingredients);
-  //     element.find('.delete').attr('value', recipe._id);
-  //     element.find('.update').attr('value', recipe._id);
-  //     return element
-  //   });
-  //   }).fail(err => console.log(err));
-  //   $('.activities').html(createSmoothieTemplate);
   });
-  $('.activities').on('click', '.blendit', (event) => {
+  $('.activities').on('submit', '#createSmoothie', (event) => {
     event.preventDefault();
+    let amountOfingredientDivs = $('.ingredients > div').length;
+    let amountInput;
+    let measurementSelect;
+    let ingredientInput;
+    for (let i = 1; i <= amountOfingredientDivs; i++) {
+      amountInput = $(`.ingredients > div:nth-child(${i}) > [name=quantity]`).val();
+      measurementSelect = $(`div:nth-child(${i}) > .measurementwrapper > [name=measurements]`).val();
+      console.log(measurementSelect);
+      ingredientInput = $(`.ingredients > div:nth-child(${i}) > [name=ingredient]`).val();
+    }
+    if (amountInput === "") {
+      $('.warning').show();
+      $('.warning').text('Amount field must be filled out')
+    } else if (measurementSelect === null) {
+      $('.warning').show();
+      $('.warning').text('Measurement needs to be selected');
+    } else if (ingredientInput === "") {
+      $('.warning').show();
+      $('.warning').text('Ingredients need to filled out');
+    } else {
     amountOfIngredients = $('.ingredients > div').length;
     let ingredients;
     let ingredientsArray = [];
     let arrayOfIngredients;
     for (i = 0; i < amountOfIngredients; i++) {
       if (amountOfIngredients > 0) {
-      let serializedArray = $(`.ingredient${+ i} :input`).serializeArray();
+      let serializedArray = $(`.ingredients > div:nth-child(${i+1}) :input`).serializeArray();
       ingredients = serializedArray.map(value => value['value']);
       ingredientsArray.push(ingredients);
       }
@@ -164,6 +143,7 @@ function addNewRecipe() {
       $('.warning').show();
       $('.warning').text(err.responseJSON);
     });
+  }
   });
 }
 

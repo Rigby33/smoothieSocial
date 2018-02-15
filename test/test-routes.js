@@ -180,7 +180,7 @@ describe('smoothieSocial API resources', function() {
     });
   });
 
-  describe('DELETE endpoing', function() {
+  describe('DELETE endpoint', function() {
     it('Should delete smoothie recipe', function() {
       return recipe.findOne()
         .then(recipe => {

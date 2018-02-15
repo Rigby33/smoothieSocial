@@ -90,10 +90,11 @@ const createSmoothieTemplate = (
             <label for="ingredients">Ingredients</label>
             <p>Each ingredient must include a number amount for how much of the ingredient should be used to make your recipe. This will help you and others to create the smoothie just like how you intended</p>
             <div class="ingredients">
-               <div class="ingredient0">
+               <div class="ingredient">
                   <input type="number" step="any" name="quantity" placeholder="amount">
                   <div class="measurementwrapper">
                      <select name="measurements">
+                        <option value="" disabled selected>Select measurement</option>
                         <option value="cup">cup</option>
                         <option value="tablespoon">tablespoon</option>
                         <option value="teaspoon">teaspoon</option>
@@ -104,12 +105,13 @@ const createSmoothieTemplate = (
                      <i class="fas fa-angle-down"></i>
                      </div>
                   </div>
-                  <input type="text" name="ingredient" placeholder="ingredient" required>
+                  <input type="text" name="ingredient" placeholder="ingredient">
                </div>
-               <div class="ingredient1">
-                  <input type="number" step="any" name="quantity" placeholder="amount" required>
+               <div class="ingredient">
+                  <input type="number" step="any" name="quantity" placeholder="amount">
                   <div class="measurementwrapper">
                      <select name="measurements">
+                        <option value="" disabled selected>Select measurement</option>
                         <option value="cup">cup</option>
                         <option value="tablespoon">tablespoon</option>
                         <option value="teaspoon">teaspoon</option>
@@ -120,12 +122,13 @@ const createSmoothieTemplate = (
                      <i class="fas fa-angle-down"></i>
                      </div>
                   </div>
-                  <input type="text" name="ingredient" placeholder="ingredient" required>
+                  <input type="text" name="ingredient" placeholder="ingredient">
                </div>
-               <div class="ingredient2">
-                  <input type="number" step="any" name="quantity" placeholder="amount" required>
+               <div class="ingredient">
+                  <input type="number" step="any" name="quantity" placeholder="amount">
                   <div class="measurementwrapper">
                      <select name="measurements">
+                        <option value="" disabled selected>Select measurement</option>
                         <option value="cup">cup</option>
                         <option value="tablespoon">tablespoon</option>
                         <option value="teaspoon">teaspoon</option>
@@ -136,12 +139,12 @@ const createSmoothieTemplate = (
                      <i class="fas fa-angle-down"></i>
                      </div>
                   </div>
-                  <input type="text" name="ingredient" placeholder="ingredient" required>
+                  <input type="text" name="ingredient" placeholder="ingredient">
                </div>
             </div>
          </div>
+          <a class="addmore">Add more ingredients</a>
          <div class="formbuttons">
-            <button class="addmore">Add more ingredients</button>
             <button class="blendit" type="submit">Blend it!</button>
          </div>
       </form>

@@ -1,16 +1,22 @@
 # smoothie social
+***
+[Live URL](#live-url) | [Summary of app](#summary-of-application) | [Technologies used](#technologies-used) | [RESTful API](#restful-api)
+***
+
 ![Smoothie Social Logo](https://i.imgur.com/EakLHV8.png)
 
 smoothie social is a app where users can create, save, view, and edit smoothie recipes. Once a user has logged in they can create a smoothie and view smoothies created by other smoothie social users.
 
 ## Live url
+***
 https://smoothie-social.herokuapp.com/
 
 **demo username**: testuser
+
 **demo password**: passwordpassword
 
 ## Summary of Application
-
+***
 When smoothie social loads the user is greeted with the logo and a little intro text about what a user can so with the app. A user can choose to register or if they are an exiting user the can log in. Users need to login to be able to use the app.
 
 ![smoothie social home screen image](https://i.imgur.com/5TGVovF.jpg)
@@ -34,6 +40,7 @@ After clicking the "blend it!" button they are taken to see the smoothies that t
 This is the view the user is greeted with if they select edit on any of their smoothie recipes.
 
 ## Technologies Used
+***
 ### Front End
   - HTML5
   - CSS3
@@ -47,31 +54,33 @@ This is the view the user is greeted with if they select edit on any of their sm
   - Mongoose
 
 ## RESTful API
-
+***
 ### /smoothie endpoint
 
 #### GET
 returns smoothies created by all users
 
-#### GET /:id
+#### GET `/:id`
 returns smoothie recipes created by a specific user
 
-#### GET /update/:recipeid
+#### GET `/update/:recipeid`
 returns a smoothie with a specific id
 
 #### POST
 create new smoothie recipe
 
-#### PUT /:recipeid
+#### PUT `/:recipeid`
 updates recipe if recipe id in request body matches recipe id in params
 
-#### DELETE /:recipeid
+#### DELETE `/:recipeid`
 deletes recipe with id that matches params
+
+***
 
 ### /auth endpoint
 
-#### POST /register
+#### POST `/register`
 registers new user
 
-#### POST /login
+#### POST `/login`
 logs user in and provides user with JWT
