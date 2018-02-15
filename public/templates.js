@@ -28,7 +28,7 @@ const loggedInActivities = (
   <div class="column">
     <img src="img/save-icon.png" alt="save icon"/>
     <h2>Save</h2>
-    <p>After you create your new recipe it is automatically saved for you. You can view your creations at any time, edit them, or delete them.</p>
+    <p>After you create your new recipe it is automatically saved for you. You can view, edit, or delete your creations at any time.</p>
     <button class="save-cta">view your creations</button>
   </div>
   </div>`)
