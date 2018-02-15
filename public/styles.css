@@ -95,8 +95,7 @@ button {
 }
 
 .fadein{
-  display: none;
-  heigh: 100vh;
+  height: 100vh;
 }
 
 .herosection {

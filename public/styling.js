@@ -1,7 +1,3 @@
-function homeLoadFadeIn() {
-	$('.fadein').fadeIn(1000);
-}
-
 function activeNav() {
 
 	$('body').on('click', '.create-cta, .nav-create', () => {
@@ -48,4 +44,3 @@ function mobileUserRegisterLogin() {
 
 $(mobileUserRegisterLogin);
 $(activeNav);
-$(homeLoadFadeIn);
