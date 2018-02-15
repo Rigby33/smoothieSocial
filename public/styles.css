@@ -258,6 +258,16 @@ input, textarea {
     display: none;
 }
 
+.deleteWarningWrapper {
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    display: none;
+}
+
 .closebutton {
   text-align: right;
   color: var(--darker-green);
@@ -270,6 +280,48 @@ input, textarea {
 
 .closebutton > div:hover {
   color: var(--even-darker-green);
+}
+
+.deleteWarning {
+  background-color: var(--light-grey);
+  padding: 30px;
+  border-radius: 10px;
+  width: 35%;
+  margin: 100px auto;
+}
+
+.deleteWarning h3 {
+  color: var(--darker-grey);
+  font-weight: 400;
+  font-size: 1.2em;
+  margin-bottom: 10px
+}
+
+.deleteWarning p {
+  margin-bottom: 20px;
+  color: var(--darker-grey);
+}
+
+.cancel {
+  background-color: var(--golden-yellow);
+  border: var(--dark-golden-yellow) solid 1px;
+  color: var(--dark-golden-yellow);
+}
+
+.cancel:hover {
+  background-color: var(--dark-golden-yellow);
+  color: white;
+}
+
+.proceed {
+  background-color: var(--light-pink);
+  border: var(--dark-pink) solid 1px;
+  color: var(--dark-pink);
+}
+
+.proceed:hover {
+  background-color: var(--dark-pink);
+  color: white;
 }
 
 .userForm {
@@ -451,26 +503,13 @@ textarea {
 
 .smoothieform select {
   -webkit-appearance: none;
-   -moz-appearance: none;
-   appearance: none;
-   font-size: 1em;
-   background-color: transparent;
-   border: 0;
-     border-radius: 30px;
-
-/*   background-image:
-    linear-gradient(45deg, transparent 50%, gray 50%),
-    linear-gradient(135deg, gray 50%, transparent 50%),
-    linear-gradient(to right, #ccc, #ccc);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    calc(100% - 2.5em) 0.5em;
-  background-size:
-    5px 5px,
-    5px 5px,
-    1px 1.5em;
-  background-repeat: no-repeat;*/
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 1em;
+  background-color: transparent;
+  border: 0;
+  border-radius: 30px;
+  color: var(--darker-grey);
   position: relative;
   z-index: 1
 }
@@ -512,6 +551,9 @@ textarea {
   background-color: var(--golden-yellow);
   color: var(--dark-golden-yellow);
   border: 2px solid var(--dark-golden-yellow);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all .25s ease
 }
 
 .addmore:hover {

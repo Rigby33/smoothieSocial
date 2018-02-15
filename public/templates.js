@@ -143,8 +143,8 @@ const createSmoothieTemplate = (
                </div>
             </div>
          </div>
-          <a class="addmore">Add more ingredients</a>
          <div class="formbuttons">
+            <a class="addmore">Add more ingredients</a>
             <button class="blendit" type="submit">Blend it!</button>
          </div>
       </form>
@@ -153,7 +153,7 @@ const createSmoothieTemplate = (
 );
 
 const editSmoothieTemplate = (
-  `         <div class="activitiesWrapper">
+  `<div class="activitiesWrapper">
    <div class="smoothieform">
       <form id="editSmoothie">
          <div class="formSmoothieName">
@@ -192,3 +192,13 @@ const allSmoothiesTemplate = (
     <ul class="ingredientsList"></ul>
   </div>`
 );
+
+const deleteWarningTemplate = (
+  `<div class="deleteWarning">
+      <h3>delete warning!</h3>
+      <p>You're about to delete one of your smoothie creations! Are you sure you want to proceed?</p>
+      <div class="deletebuttons">
+         <button class="cancel">No! Go back!</button>
+         <button class="proceed">Yes please!</button>
+      </div>
+   </div>`);

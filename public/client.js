@@ -61,32 +61,32 @@ function viewMySmoothies() {
 
  
 function addMoreIngredientFields() {
+  $('.activities').on('click', '.addmore', (event) => {
+    event.preventDefault();
     $('.ingredients').append(`<div class="ingredient">
-            <input type="number" step="any" name="quantity" placeholder="amount">
-            <div class="measurementwrapper">
-            <select name="measurements">
-              <option value="" disabled selected>Select measurement</option>
-              <option value="cup">cup</option>
-              <option value="tablespoon">tablespoon</option>
-              <option value="teaspoon">teaspoon</option>
-              <option value="fluid oz.">fluid oz.</option>
-              <option value="full amount of">full amount of</option>
-          </select>
-          <div class="arrowcontainer">
-          <i class="fas fa-angle-down"></i>
-          </div>
+      <input type="number" step="any" name="quantity" placeholder="amount">
+      <div class="measurementwrapper">
+      <select name="measurements">
+      <option value="" disabled selected>Select measurement</option>
+      <option value="cup">cup</option>
+      <option value="tablespoon">tablespoon</option>
+      <option value="teaspoon">teaspoon</option>
+      <option value="fluid oz.">fluid oz.</option>
+      <option value="full amount of">full amount of</option>
+      </select>
+      <div class="arrowcontainer">
+      <i class="fas fa-angle-down"></i>
       </div>
-              <input type="text" name="ingredient" placeholder="ingredient">
-          </div>`);
+      </div>
+      <input type="text" name="ingredient" placeholder="ingredient">
+      </div>`);
+  });
 }
 
 function addNewRecipe() {
   let amountOfIngredients;
   $('body').on('click', '.create-cta, .nav-create', () => {
     $('.activities').html(createSmoothieTemplate);
-    $('.activities').on('click', '.addmore', (event) => {
-      addMoreIngredientFields();
-    });
   });
   $('.activities').on('submit', '#createSmoothie', (event) => {
     event.preventDefault();
@@ -138,19 +138,14 @@ function addNewRecipe() {
     }).done((recipe) => {
     $('.activities').html('<div class="smoothies"></div>');
       displayCurrentRecipes();
+      $('.nav-my-smoothies').toggleClass('active');
+      $('.nav-create').toggleClass('active');
     }).fail((err) => {
       $('.warning').show();
       $('.warning').text(err.responseJSON);
     });
   }
   });
-}
-
-function removeIngredientFields() {
-  $('.activities').on('click', '.removeFields', (event) => {
-    event.preventDefault();
-    $('[name=ingredients]').remove();
-  })
 }
 
 function displayCurrentRecipes() {
@@ -180,8 +175,9 @@ function displayCurrentRecipes() {
 
 function deleteRecipe() {
   $('.activities').on('click', '.delete', (el) => {
-    let result = confirm('Are you sure you want to delete this recipe?');
-    if(result) {
+    $('.deleteWarningWrapper').show();
+    $('.deleteWarningWrapper').html(deleteWarningTemplate);
+    $('.deleteWarningWrapper').on('click', '.proceed', (event) => {
     let recipeToRemove = $(this).parent('.smoothie');
     recipeId = el.currentTarget.getAttribute('value');
     $.ajax({
@@ -193,10 +189,14 @@ function deleteRecipe() {
     }).done((recipe) => {
       recipeToRemove.remove();
       displayCurrentRecipes();
+      $('.deleteWarningWrapper').hide();
     }).fail((err) => {
       console.log(err);
     });
-  }
+  });
+    $('.deleteWarningWrapper').on('click', '.cancel', () => {
+      $('.deleteWarningWrapper').hide();
+    });
 });
 }
 
@@ -258,6 +258,7 @@ function displayRecipeToEdit(recipe) {
   $('[name=ingredients]').val(`${recipe.ingredients}`);
 }
 
+$(addMoreIngredientFields);
 $(viewAllSmoothies);
 $(viewMySmoothies);
 $(updateRecipe);
