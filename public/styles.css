@@ -598,7 +598,6 @@ textarea {
   margin-right: 30px;
   box-shadow: var(--boxshadow);
   width: 25%;
-/*  flex:1 1 auto;*/
 }
 
 .smoothie h3 {
@@ -693,7 +692,8 @@ textarea {
   }
   .smoothie {
     margin-left: 10px;
-    margin-right: 10px
+    margin-right: 10px;
+    width: 40%
   }
 }
 
@@ -712,6 +712,9 @@ textarea {
   }
   .mainWrapper > .column > img {
     width: 20%
+  }
+  .deleteWarning {
+    width: 50%
   }
 }
 
@@ -801,6 +804,12 @@ textarea {
   }
   .userFormWrapper {
     position: absolute;
+  }
+  .deleteWarning {
+    width: 90%
+  }
+  .cancel {
+    margin-bottom: 10px
   }
 }
 

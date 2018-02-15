@@ -113,13 +113,13 @@ router.put('/:id', (req, res) => {
 // delete recipe
 router.delete('/:id', (req, res) => {
   recipe.findByIdAndRemove(req.params.id)
-        .then(() => {
-          res.status(204).json({message:'success'});
-        })
-        .catch(err => {
-          console.error(err);
-          res.status(500).json({error: 'something went wrong'});
-        });
+    .then(() => {
+      res.status(204).json({message:'success'});
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'something went wrong'});
+    });
 });
 
 

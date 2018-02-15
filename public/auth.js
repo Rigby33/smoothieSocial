@@ -18,24 +18,24 @@ function signUp() {
       $('.warning').show();
       $('.warning').text('Your passwords do not match');
     } else { 
-    const newUser = {
-      username: username,
-      password: password,
-      firstName: firstName,
-      lastName: lastName
-    };
-    $.ajax({
-      url: REGISTER_URL,
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(newUser)
-    }).done(() => {
-      $('.userFormWrapper').html(loginForm);
-    }).fail(err => {
-      $('.warning').show();
-      $('.warning').text(err.responseJSON.message);
-    });
-  }
+      const newUser = {
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
+      };
+      $.ajax({
+        url: REGISTER_URL,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(newUser)
+      }).done(() => {
+        $('.userFormWrapper').html(loginForm);
+      }).fail(err => {
+        $('.warning').show();
+        $('.warning').text(err.responseJSON.message);
+      });
+    }
   });
 }
 
@@ -99,7 +99,6 @@ function fadeInIfLoggedIn() {
 
 function isUserLoggedIn() {
   if(localStorage.getItem('userId')) {
-
     fadeInIfLoggedIn();
     loadUserActions();
     $('header').show();

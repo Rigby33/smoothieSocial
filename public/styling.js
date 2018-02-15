@@ -3,7 +3,7 @@ function homeLoadFadeIn() {
 }
 
 function activeNav() {
-	
+
 	$('body').on('click', '.create-cta, .nav-create', () => {
 		$('.nav-create').addClass('active')
 		if($('.nav-community').hasClass('active')) {
