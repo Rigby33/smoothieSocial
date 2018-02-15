@@ -1,6 +1,5 @@
 function homeLoadFadeIn() {
 	$('.fadein').fadeIn(1000);
-	console.log('should fade in')
 }
 
 function activeNav() {

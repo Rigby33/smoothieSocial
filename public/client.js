@@ -97,7 +97,6 @@ function addNewRecipe() {
     for (let i = 1; i <= amountOfingredientDivs; i++) {
       amountInput = $(`.ingredients > div:nth-child(${i}) > [name=quantity]`).val();
       measurementSelect = $(`div:nth-child(${i}) > .measurementwrapper > [name=measurements]`).val();
-      console.log(measurementSelect);
       ingredientInput = $(`.ingredients > div:nth-child(${i}) > [name=ingredient]`).val();
     }
     if (amountInput === "") {

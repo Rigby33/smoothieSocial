@@ -30,12 +30,10 @@ function signUp() {
       contentType: 'application/json',
       data: JSON.stringify(newUser)
     }).done(() => {
-      console.log('you have been registered');
       $('.userFormWrapper').html(loginForm);
     }).fail(err => {
       $('.warning').show();
       $('.warning').text(err.responseJSON.message);
-      console.log(err.responseJSON.message);
     });
   }
   });
@@ -44,7 +42,6 @@ function signUp() {
 function closeButton() {
   $('.userFormWrapper').on('click', '.closebutton > div', event => {
     $('.userFormWrapper').hide();
-    console.log('hi');
   });
 }
 
@@ -71,13 +68,11 @@ function logIn() {
       if(response == 'Username not found') {
         $('.warning').show();
         $('.warning').text('Username not found');
-        console.log('Username not found');
         return;
       }
       if(response == 'Password is incorrect') {
         $('.warning').show();
         $('.warning').text('Password is incorrect');
-        console.log('Password is incorrect');
         return;
       }
       $('.userFormWrapper').hide();
@@ -88,7 +83,6 @@ function logIn() {
       $('.activities').show();
       $('.activities').html(loggedInActivities);
       $('.herosection').hide();
-      console.log('you have been logged in');
     }).fail(err => {
       console.log(err);
     });
