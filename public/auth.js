@@ -83,6 +83,7 @@ function logIn() {
       $('.activities').show();
       $('.activities').html(loggedInActivities);
       $('.herosection').hide();
+      $('.fadein').hide();
     }).fail(err => {
       console.log(err);
     });
@@ -106,6 +107,7 @@ function isUserLoggedIn() {
     $('.activities').show();
     $('.activities').html(loggedInActivities);
     $('.herosection').hide();
+    $('.fadein').hide();
   }
 }
 
@@ -117,6 +119,7 @@ function logout() {
     $('.activities').hide();
     $('main').show();
     $('.herosection').show();
+    $('.fadein').show();
     $('header').hide();
   });
 }
