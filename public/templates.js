@@ -65,6 +65,8 @@ const loginForm = (
       </div>
     </div>
     <h3>LOGIN AND GET STARTED</h3>
+    <p style="text-align: center; color: var(--darker-grey)"><b>demo username:</b> testuser</p>
+    <p style="color: var(--darker-grey); text-align:center; white; padding-bottom: 20px"><b>demo password:</b> passwordpassword</p>
     <div class="userquestion"><p>Not a member yet?</p><button class="registerQuestion">register</button>
     </div>
     <div class="warning"></div>
